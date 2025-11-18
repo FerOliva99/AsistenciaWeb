@@ -23,13 +23,13 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.Nombre</td>
-                <td>@item.Apellido</td>
-                <td>@item.Correo</td>
+                <td>@item.nombre</td>
+                <td>@item.apellido</td>
+                <td>@item.correo</td>
                 <td>
-                    <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.IdDocente">Detalles</a>
-                    <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@item.IdDocente">Editar</a>
-                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.IdDocente">Eliminar</a>
+                    <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.id_docente">Detalles</a>
+                    <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@item.id_docente">Editar</a>
+                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.id_docente">Eliminar</a>
                 </td>
             </tr>
         }

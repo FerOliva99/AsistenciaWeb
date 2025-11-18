@@ -1,25 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace AsistenciaWeb.Models;
 
+[Table("Grupo")]
 public partial class Grupo
 {
-    public int IdGrupo { get; set; }
+    [Key]
+    public int id_grupo { get; set; }
 
-    public int IdMateria { get; set; }
+    public int id_materia { get; set; }
 
-    public int IdDocente { get; set; }
+    public int id_docente { get; set; }
 
-    public string? Horario { get; set; }
+    [StringLength(100)]
+    [Unicode(false)]
+    public string? horario { get; set; }
 
-    public string? Aula { get; set; }
+    [StringLength(50)]
+    [Unicode(false)]
+    public string? aula { get; set; }
 
+    [InverseProperty("id_grupoNavigation")]
     public virtual ICollection<Asistencium> Asistencia { get; set; } = new List<Asistencium>();
 
-    public virtual ICollection<EstudianteGrupo> EstudianteGrupos { get; set; } = new List<EstudianteGrupo>();
+    [InverseProperty("id_grupoNavigation")]
+    public virtual ICollection<Estudiante_Grupo> Estudiante_Grupos { get; set; } = new List<Estudiante_Grupo>();
 
-    public virtual Docente IdDocenteNavigation { get; set; } = null!;
+    [ForeignKey("id_docente")]
+    [InverseProperty("Grupos")]
+    public virtual Docente id_docenteNavigation { get; set; } = null!;
 
-    public virtual Materium IdMateriaNavigation { get; set; } = null!;
+    [ForeignKey("id_materia")]
+    [InverseProperty("Grupos")]
+    public virtual Materium id_materiaNavigation { get; set; } = null!;
 }

@@ -28,7 +28,7 @@ namespace AsistenciaWeb.Controllers
                 return NotFound();
 
             var docente = await _context.Docentes
-                .FirstOrDefaultAsync(m => m.IdDocente == id);
+                .FirstOrDefaultAsync(m => m.id_docente == id);
 
             if (docente == null)
                 return NotFound();
@@ -74,7 +74,7 @@ namespace AsistenciaWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Docente docente)
         {
-            if (id != docente.IdDocente)
+            if (id != docente.id_docente)
                 return NotFound();
 
             if (ModelState.IsValid)
@@ -86,7 +86,7 @@ namespace AsistenciaWeb.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!_context.Docentes.Any(e => e.IdDocente == id))
+                    if (!_context.Docentes.Any(e => e.id_docente == id))
                         return NotFound();
 
                     throw;
@@ -103,7 +103,7 @@ namespace AsistenciaWeb.Controllers
                 return NotFound();
 
             var docente = await _context.Docentes
-                .FirstOrDefaultAsync(m => m.IdDocente == id);
+                .FirstOrDefaultAsync(m => m.id_docente == id);
 
             if (docente == null)
                 return NotFound();

@@ -27,17 +27,17 @@
         @foreach (var estudiante in Model)
         {
             <tr>
-                <td>@estudiante.IdEstudiante</td>
-                <td>@estudiante.CodigoBarras</td>
-                <td>@estudiante.Carnet</td>
-                <td>@estudiante.Nombre</td>
-                <td>@estudiante.Apellido</td>
-                <td>@estudiante.Carrera</td>
-                <td>@(estudiante.Estado == 1 ? "Activo" : "Inactivo")</td>
+                <td>@estudiante.id_estudiante</td>
+                <td>@estudiante.codigo_barras</td>
+                <td>@estudiante.carnet</td>
+                <td>@estudiante.nombre</td>
+                <td>@estudiante.apellido</td>
+                <td>@estudiante.IdCarrera</td>
+                <td>@(estudiante.estado == 1 ? "Activo" : "Inactivo")</td>
                 <td>
-                    <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@estudiante.IdEstudiante">Detalles</a>
-                    <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@estudiante.IdEstudiante">Editar</a>
-                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@estudiante.IdEstudiante">Eliminar</a>
+                    <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@estudiante.id_estudiante">Detalles</a>
+                    <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@estudiante.id_estudiante">Editar</a>
+                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@estudiante.id_estudiante">Eliminar</a>
                 </td>
             </tr>
         }

@@ -11,13 +11,13 @@
 </div>
 
 <ul class="list-group">
-    <li class="list-group-item"><strong>Nombre:</strong> @Model.Nombre</li>
-    <li class="list-group-item"><strong>Código:</strong> @Model.Codigo</li>
-    <li class="list-group-item"><strong>Carrera:</strong> @Model.Carrera</li>
+    <li class="list-group-item"><strong>Nombre:</strong> @Model.nombre</li>
+    <li class="list-group-item"><strong>Código:</strong> @Model.codigo</li>
+    <li class="list-group-item"><strong>Carrera:</strong> @Model.IdCarrera</li>
 </ul>
 
 <form asp-action="Delete">
-    <input type="hidden" asp-for="IdMateria" />
+    <input type="hidden" asp-for="id_materia" />
     <button type="submit" class="btn btn-danger mt-3">Eliminar</button>
     <a asp-action="Index" class="btn btn-secondary mt-3">Cancelar</a>
 </form>

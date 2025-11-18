@@ -7,21 +7,21 @@
 <h1>Editar Docente</h1>
 
 <form asp-action="Edit" method="post">
-    <input type="hidden" asp-for="IdDocente" />
+    <input type="hidden" asp-for="id_docente" />
 
     <div class="form-group">
         <label>Nombre</label>
-        <input asp-for="Nombre" class="form-control" />
+        <input asp-for="nombre" class="form-control" />
     </div>
 
     <div class="form-group">
         <label>Apellido</label>
-        <input asp-for="Apellido" class="form-control" />
+        <input asp-for="apellido" class="form-control" />
     </div>
 
     <div class="form-group">
         <label>Correo</label>
-        <input asp-for="Correo" class="form-control" />
+        <input asp-for="correo" class="form-control" />
     </div>
 
     <button type="submit" class="btn btn-success mt-3">Guardar</button>

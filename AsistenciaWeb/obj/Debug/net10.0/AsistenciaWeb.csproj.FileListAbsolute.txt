@@ -150,6 +150,7 @@ C:\Users\diego\Videos\AsistenciaWeb\AsistenciaWeb\obj\Debug\net10.0\AsistenciaWe
 C:\Users\diego\Videos\AsistenciaWeb\AsistenciaWeb\obj\Debug\net10.0\AsistenciaWeb.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\diego\Videos\AsistenciaWeb\AsistenciaWeb\obj\Debug\net10.0\AsistenciaWeb.RazorAssemblyInfo.cache
 C:\Users\diego\Videos\AsistenciaWeb\AsistenciaWeb\obj\Debug\net10.0\AsistenciaWeb.RazorAssemblyInfo.cs
+C:\Users\diego\Videos\AsistenciaWeb\AsistenciaWeb\obj\Debug\net10.0\AsistenciaWeb.sourcelink.json
 C:\Users\diego\Videos\AsistenciaWeb\AsistenciaWeb\obj\Debug\net10.0\rjimswa.dswa.cache.json
 C:\Users\diego\Videos\AsistenciaWeb\AsistenciaWeb\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
 C:\Users\diego\Videos\AsistenciaWeb\AsistenciaWeb\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
