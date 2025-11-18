@@ -1,0 +1,37 @@
+﻿@model IEnumerable<AsistenciaWeb.Models.Docente>
+
+@{
+    ViewData["Title"] = "Lista de Docentes";
+}
+
+<h2>Lista de Docentes</h2>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Crear Docente</a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Correo</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Nombre</td>
+                <td>@item.Apellido</td>
+                <td>@item.Correo</td>
+                <td>
+                    <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.IdDocente">Detalles</a>
+                    <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@item.IdDocente">Editar</a>
+                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.IdDocente">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

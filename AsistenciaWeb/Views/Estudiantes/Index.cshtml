@@ -1,0 +1,45 @@
+﻿@model IEnumerable<AsistenciaWeb.Models.Estudiante>
+
+@{
+    ViewData["Title"] = "Lista de Estudiantes";
+}
+
+<h2>Lista de Estudiantes</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Crear Estudiante</a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Código de Barras</th>
+            <th>Carnet</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Carrera</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var estudiante in Model)
+        {
+            <tr>
+                <td>@estudiante.IdEstudiante</td>
+                <td>@estudiante.CodigoBarras</td>
+                <td>@estudiante.Carnet</td>
+                <td>@estudiante.Nombre</td>
+                <td>@estudiante.Apellido</td>
+                <td>@estudiante.Carrera</td>
+                <td>@(estudiante.Estado == 1 ? "Activo" : "Inactivo")</td>
+                <td>
+                    <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@estudiante.IdEstudiante">Detalles</a>
+                    <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@estudiante.IdEstudiante">Editar</a>
+                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@estudiante.IdEstudiante">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

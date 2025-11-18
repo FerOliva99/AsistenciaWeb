@@ -1,0 +1,23 @@
+﻿@model AsistenciaWeb.Models.Docente
+
+@{
+    ViewData["Title"] = "Eliminar Docente";
+}
+
+<h1>Eliminar Docente</h1>
+
+<div>
+    <p>¿Está seguro de que desea eliminar este docente?</p>
+</div>
+
+<ul class="list-group">
+    <li class="list-group-item"><strong>Nombre:</strong> @Model.Nombre</li>
+    <li class="list-group-item"><strong>Apellido:</strong> @Model.Apellido</li>
+    <li class="list-group-item"><strong>Correo:</strong> @Model.Correo</li>
+</ul>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="IdDocente" />
+    <button type="submit" class="btn btn-danger mt-3">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary mt-3">Cancelar</a>
+</form>

@@ -1,0 +1,29 @@
+﻿@model AsistenciaWeb.Models.Materium
+
+@{
+    ViewData["Title"] = "Editar Materia";
+}
+
+<h2>Editar Materia</h2>
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="IdMateria" />
+    
+    <div class="form-group">
+        <label>Nombre</label>
+        <input asp-for="Nombre" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Código</label>
+        <input asp-for="Codigo" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Carrera</label>
+        <input asp-for="Carrera" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success mt-3">Guardar</button>
+    <a asp-action="Index" class="btn btn-secondary mt-3">Cancelar</a>
+</form>

@@ -1,0 +1,16 @@
+﻿@model AsistenciaWeb.Models.Docente
+
+@{
+    ViewData["Title"] = "Detalle de Docente";
+}
+
+<h1>Detalles del Docente</h1>
+
+<ul class="list-group">
+    <li class="list-group-item"><strong>Nombre:</strong> @Model.Nombre</li>
+    <li class="list-group-item"><strong>Apellido:</strong> @Model.Apellido</li>
+    <li class="list-group-item"><strong>Correo:</strong> @Model.Correo</li>
+</ul>
+
+<a class="btn btn-primary mt-3" asp-action="Edit" asp-route-id="@Model.IdDocente">Editar</a>
+<a class="btn btn-secondary mt-3" asp-action="Index">Volver</a>

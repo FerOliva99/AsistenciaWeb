@@ -1,0 +1,23 @@
+﻿@model AsistenciaWeb.Models.Materium
+
+@{
+    ViewData["Title"] = "Eliminar Materia";
+}
+
+<h1>Eliminar Materia</h1>
+
+<div>
+    <p>¿Está seguro de que desea eliminar esta materia?</p>
+</div>
+
+<ul class="list-group">
+    <li class="list-group-item"><strong>Nombre:</strong> @Model.Nombre</li>
+    <li class="list-group-item"><strong>Código:</strong> @Model.Codigo</li>
+    <li class="list-group-item"><strong>Carrera:</strong> @Model.Carrera</li>
+</ul>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="IdMateria" />
+    <button type="submit" class="btn btn-danger mt-3">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary mt-3">Cancelar</a>
+</form>
