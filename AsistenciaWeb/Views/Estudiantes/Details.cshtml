@@ -7,13 +7,13 @@
 <h1>Detalles del Estudiante</h1>
 
 <ul class="list-group">
-    <li class="list-group-item"><strong>Código de Barras:</strong> @Model.CodigoBarras</li>
-    <li class="list-group-item"><strong>Carnet:</strong> @Model.Carnet</li>
-    <li class="list-group-item"><strong>Nombre:</strong> @Model.Nombre</li>
-    <li class="list-group-item"><strong>Apellido:</strong> @Model.Apellido</li>
-    <li class="list-group-item"><strong>Carrera:</strong> @Model.Carrera</li>
-    <li class="list-group-item"><strong>Estado:</strong>  @(Model.Estado == 1 ? "Activo" : "Inactivo")</li>
+    <li class="list-group-item"><strong>Código de Barras:</strong> @Model.codigo_barras</li>
+    <li class="list-group-item"><strong>Carnet:</strong> @Model.carnet</li>
+    <li class="list-group-item"><strong>Nombre:</strong> @Model.nombre</li>
+    <li class="list-group-item"><strong>Apellido:</strong> @Model.apellido</li>
+    <li class="list-group-item"><strong>Carrera:</strong> @Model.IdCarrera</li>
+    <li class="list-group-item"><strong>Estado:</strong>  @(Model.estado == 1 ? "Activo" : "Inactivo")</li>
 </ul>
 
-<a class="btn btn-primary mt-3" asp-action="Edit" asp-route-id="@Model.IdEstudiante">Editar</a>
+<a class="btn btn-primary mt-3" asp-action="Edit" asp-route-id="@Model.id_estudiante">Editar</a>
 <a class="btn btn-secondary mt-3" asp-action="Index">Volver</a>

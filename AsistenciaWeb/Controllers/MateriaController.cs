@@ -22,7 +22,7 @@ public class MateriaController : Controller
     {
         if (id == null) return NotFound();
 
-        var materia = await _context.Materia.FirstOrDefaultAsync(m => m.IdMateria == id);
+        var materia = await _context.Materia.FirstOrDefaultAsync(m => m.id_materia == id);
 
         if (materia == null) return NotFound();
 
@@ -65,7 +65,7 @@ public class MateriaController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(int id, Materium materium)
     {
-        if (id != materium.IdMateria) return NotFound();
+        if (id != materium.id_materia) return NotFound();
 
         if (ModelState.IsValid)
         {
@@ -76,7 +76,7 @@ public class MateriaController : Controller
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!_context.Materia.Any(e => e.IdMateria == id))
+                if (!_context.Materia.Any(e => e.id_materia == id))
                     return NotFound();
                 else
                     throw;
@@ -92,7 +92,7 @@ public class MateriaController : Controller
     {
         if (id == null) return NotFound();
 
-        var materia = await _context.Materia.FirstOrDefaultAsync(m => m.IdMateria == id);
+        var materia = await _context.Materia.FirstOrDefaultAsync(m => m.id_materia == id);
         if (materia == null) return NotFound();
 
         return View(materia);

@@ -1,17 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace AsistenciaWeb.Models;
 
+[Table("EstudianteGrupo")]
 public partial class EstudianteGrupo
 {
-    public int IdEstudianteGrupo { get; set; }
+    [Key]
+    public int id_estudiante_grupo { get; set; }
 
-    public int IdEstudiante { get; set; }
+    public int id_estudiante { get; set; }
 
-    public int IdGrupo { get; set; }
+    public int id_grupo { get; set; }
 
-    public virtual Estudiante IdEstudianteNavigation { get; set; } = null!;
+    [ForeignKey("id_estudiante")]
+    [InverseProperty("EstudianteGrupos")]
+    public virtual Estudiante id_estudianteNavigation { get; set; } = null!;
 
-    public virtual Grupo IdGrupoNavigation { get; set; } = null!;
+    [ForeignKey("id_grupo")]
+    [InverseProperty("EstudianteGrupos")]
+    public virtual Grupo id_grupoNavigation { get; set; } = null!;
 }

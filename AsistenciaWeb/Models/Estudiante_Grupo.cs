@@ -6,28 +6,21 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AsistenciaWeb.Models;
 
-public partial class Asistencium
+[Table("Estudiante_Grupo")]
+public partial class Estudiante_Grupo
 {
     [Key]
-    public int id_asistencia { get; set; }
+    public int id_estudiante_grupo { get; set; }
 
     public int id_estudiante { get; set; }
 
     public int id_grupo { get; set; }
 
-    public DateOnly fecha { get; set; }
-
-    public TimeOnly hora { get; set; }
-
-    [StringLength(20)]
-    [Unicode(false)]
-    public string? estado { get; set; }
-
     [ForeignKey("id_estudiante")]
-    [InverseProperty("Asistencia")]
+    [InverseProperty("Estudiante_Grupos")]
     public virtual Estudiante id_estudianteNavigation { get; set; } = null!;
 
     [ForeignKey("id_grupo")]
-    [InverseProperty("Asistencia")]
+    [InverseProperty("Estudiante_Grupos")]
     public virtual Grupo id_grupoNavigation { get; set; } = null!;
 }

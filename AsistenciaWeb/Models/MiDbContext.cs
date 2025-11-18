@@ -6,6 +6,9 @@ namespace AsistenciaWeb.Models;
 
 public partial class MiDbContext : DbContext
 {
+    public MiDbContext()
+    {
+    }
 
     public MiDbContext(DbContextOptions<MiDbContext> options)
         : base(options)
@@ -14,174 +17,97 @@ public partial class MiDbContext : DbContext
 
     public virtual DbSet<Asistencium> Asistencia { get; set; }
 
+    public virtual DbSet<Carrera> Carreras { get; set; }
+
     public virtual DbSet<Docente> Docentes { get; set; }
 
     public virtual DbSet<Estudiante> Estudiantes { get; set; }
 
-    public virtual DbSet<EstudianteGrupo> EstudianteGrupos { get; set; }
+    public virtual DbSet<Estudiante_Grupo> Estudiante_Grupos { get; set; }
 
     public virtual DbSet<Grupo> Grupos { get; set; }
 
     public virtual DbSet<Materium> Materia { get; set; }
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Server=DESKTOP-QEROJPO;Database=AsistenciaUNAB;Trusted_Connection=True;TrustServerCertificate=True");
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Asistencium>(entity =>
         {
-            entity.HasKey(e => e.IdAsistencia).HasName("PK__Asistenc__D0454A9AA02806ED");
+            entity.HasKey(e => e.id_asistencia).HasName("PK__Asistenc__D0454A9AA02806ED");
 
-            entity.Property(e => e.IdAsistencia).HasColumnName("id_asistencia");
-            entity.Property(e => e.Estado)
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasDefaultValue("Presente")
-                .HasColumnName("estado");
-            entity.Property(e => e.Fecha)
-                .HasDefaultValueSql("(CONVERT([date],getdate()))")
-                .HasColumnName("fecha");
-            entity.Property(e => e.Hora)
-                .HasDefaultValueSql("(CONVERT([time],getdate()))")
-                .HasColumnName("hora");
-            entity.Property(e => e.IdEstudiante).HasColumnName("id_estudiante");
-            entity.Property(e => e.IdGrupo).HasColumnName("id_grupo");
+            entity.Property(e => e.estado).HasDefaultValue("Presente");
+            entity.Property(e => e.fecha).HasDefaultValueSql("(CONVERT([date],getdate()))");
+            entity.Property(e => e.hora).HasDefaultValueSql("(CONVERT([time],getdate()))");
 
-            entity.HasOne(d => d.IdEstudianteNavigation).WithMany(p => p.Asistencia)
-                .HasForeignKey(d => d.IdEstudiante)
+            entity.HasOne(d => d.id_estudianteNavigation).WithMany(p => p.Asistencia)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Asistenci__id_es__38996AB5");
 
-            entity.HasOne(d => d.IdGrupoNavigation).WithMany(p => p.Asistencia)
-                .HasForeignKey(d => d.IdGrupo)
+            entity.HasOne(d => d.id_grupoNavigation).WithMany(p => p.Asistencia)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Asistenci__id_gr__398D8EEE");
         });
 
+        modelBuilder.Entity<Carrera>(entity =>
+        {
+            entity.HasKey(e => e.IdCarrera).HasName("PK__Carreras__884A8F1F1025FA7F");
+
+            entity.Property(e => e.estado).HasDefaultValue((byte)1);
+        });
+
         modelBuilder.Entity<Docente>(entity =>
         {
-            entity.HasKey(e => e.IdDocente).HasName("PK__Docente__300DB211A6830D1D");
-
-            entity.ToTable("Docente");
-
-            entity.Property(e => e.IdDocente).HasColumnName("id_docente");
-            entity.Property(e => e.Apellido)
-                .HasMaxLength(120)
-                .IsUnicode(false)
-                .HasColumnName("apellido");
-            entity.Property(e => e.Correo)
-                .HasMaxLength(120)
-                .IsUnicode(false)
-                .HasColumnName("correo");
-            entity.Property(e => e.Nombre)
-                .HasMaxLength(120)
-                .IsUnicode(false)
-                .HasColumnName("nombre");
+            entity.HasKey(e => e.id_docente).HasName("PK__Docente__300DB211A6830D1D");
         });
 
         modelBuilder.Entity<Estudiante>(entity =>
         {
-            entity.HasKey(e => e.IdEstudiante).HasName("PK__Estudian__E0B2763C8947BB43");
+            entity.HasKey(e => e.id_estudiante).HasName("PK__Estudian__E0B2763C8947BB43");
 
-            entity.ToTable("Estudiante");
+            entity.Property(e => e.estado).HasDefaultValue((byte)1);
 
-            entity.HasIndex(e => e.Carnet, "UQ__Estudian__4CDEAA6ED2F1E892").IsUnique();
-
-            entity.HasIndex(e => e.CodigoBarras, "UQ__Estudian__730FA6AB15B29C61").IsUnique();
-
-            entity.Property(e => e.IdEstudiante).HasColumnName("id_estudiante");
-            entity.Property(e => e.Apellido)
-                .HasMaxLength(100)
-                .IsUnicode(false)
-                .HasColumnName("apellido");
-            entity.Property(e => e.Carnet)
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasColumnName("carnet");
-            entity.Property(e => e.Carrera)
-                .HasMaxLength(100)
-                .IsUnicode(false)
-                .HasColumnName("carrera");
-            entity.Property(e => e.CodigoBarras)
-                .HasMaxLength(100)
-                .IsUnicode(false)
-                .HasColumnName("codigo_barras");
-            entity.Property(e => e.Estado)
-                .HasDefaultValue((byte)1)
-                .HasColumnName("estado");
-            entity.Property(e => e.Nombre)
-                .HasMaxLength(100)
-                .IsUnicode(false)
-                .HasColumnName("nombre");
+            entity.HasOne(d => d.IdCarreraNavigation).WithMany(p => p.Estudiantes)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Estudiante_Carrera");
         });
 
-        modelBuilder.Entity<EstudianteGrupo>(entity =>
+        modelBuilder.Entity<Estudiante_Grupo>(entity =>
         {
-            entity.HasKey(e => e.IdEstudianteGrupo).HasName("PK__Estudian__88D38805F519C5DB");
+            entity.HasKey(e => e.id_estudiante_grupo).HasName("PK__Estudian__88D38805F519C5DB");
 
-            entity.ToTable("Estudiante_Grupo");
-
-            entity.Property(e => e.IdEstudianteGrupo).HasColumnName("id_estudiante_grupo");
-            entity.Property(e => e.IdEstudiante).HasColumnName("id_estudiante");
-            entity.Property(e => e.IdGrupo).HasColumnName("id_grupo");
-
-            entity.HasOne(d => d.IdEstudianteNavigation).WithMany(p => p.EstudianteGrupos)
-                .HasForeignKey(d => d.IdEstudiante)
+            entity.HasOne(d => d.id_estudianteNavigation).WithMany(p => p.Estudiante_Grupos)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Estudiant__id_es__31EC6D26");
 
-            entity.HasOne(d => d.IdGrupoNavigation).WithMany(p => p.EstudianteGrupos)
-                .HasForeignKey(d => d.IdGrupo)
+            entity.HasOne(d => d.id_grupoNavigation).WithMany(p => p.Estudiante_Grupos)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Estudiant__id_gr__32E0915F");
         });
 
         modelBuilder.Entity<Grupo>(entity =>
         {
-            entity.HasKey(e => e.IdGrupo).HasName("PK__Grupo__8B68D68893A22E61");
+            entity.HasKey(e => e.id_grupo).HasName("PK__Grupo__8B68D68893A22E61");
 
-            entity.ToTable("Grupo");
-
-            entity.Property(e => e.IdGrupo).HasColumnName("id_grupo");
-            entity.Property(e => e.Aula)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("aula");
-            entity.Property(e => e.Horario)
-                .HasMaxLength(100)
-                .IsUnicode(false)
-                .HasColumnName("horario");
-            entity.Property(e => e.IdDocente).HasColumnName("id_docente");
-            entity.Property(e => e.IdMateria).HasColumnName("id_materia");
-
-            entity.HasOne(d => d.IdDocenteNavigation).WithMany(p => p.Grupos)
-                .HasForeignKey(d => d.IdDocente)
+            entity.HasOne(d => d.id_docenteNavigation).WithMany(p => p.Grupos)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Grupo__id_docent__2F10007B");
 
-            entity.HasOne(d => d.IdMateriaNavigation).WithMany(p => p.Grupos)
-                .HasForeignKey(d => d.IdMateria)
+            entity.HasOne(d => d.id_materiaNavigation).WithMany(p => p.Grupos)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Grupo__id_materi__2E1BDC42");
         });
 
         modelBuilder.Entity<Materium>(entity =>
         {
-            entity.HasKey(e => e.IdMateria).HasName("PK__Materia__7E03FD39E4660FA1");
+            entity.HasKey(e => e.id_materia).HasName("PK__Materia__7E03FD39E4660FA1");
 
-            entity.HasIndex(e => e.Codigo, "UQ__Materia__40F9A2065140A593").IsUnique();
-
-            entity.Property(e => e.IdMateria).HasColumnName("id_materia");
-            entity.Property(e => e.Carrera)
-                .HasMaxLength(100)
-                .IsUnicode(false)
-                .HasColumnName("carrera");
-            entity.Property(e => e.Codigo)
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasColumnName("codigo");
-            entity.Property(e => e.Nombre)
-                .HasMaxLength(150)
-                .IsUnicode(false)
-                .HasColumnName("nombre");
+            entity.HasOne(d => d.IdCarreraNavigation).WithMany(p => p.Materia)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Materia_Carrera");
         });
 
         OnModelCreatingPartial(modelBuilder);

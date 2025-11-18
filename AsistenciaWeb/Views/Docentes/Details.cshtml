@@ -7,10 +7,10 @@
 <h1>Detalles del Docente</h1>
 
 <ul class="list-group">
-    <li class="list-group-item"><strong>Nombre:</strong> @Model.Nombre</li>
-    <li class="list-group-item"><strong>Apellido:</strong> @Model.Apellido</li>
-    <li class="list-group-item"><strong>Correo:</strong> @Model.Correo</li>
+    <li class="list-group-item"><strong>Nombre:</strong> @Model.nombre</li>
+    <li class="list-group-item"><strong>Apellido:</strong> @Model.apellido</li>
+    <li class="list-group-item"><strong>Correo:</strong> @Model.correo</li>
 </ul>
 
-<a class="btn btn-primary mt-3" asp-action="Edit" asp-route-id="@Model.IdDocente">Editar</a>
+<a class="btn btn-primary mt-3" asp-action="Edit" asp-route-id="@Model.id_docente">Editar</a>
 <a class="btn btn-secondary mt-3" asp-action="Index">Volver</a>

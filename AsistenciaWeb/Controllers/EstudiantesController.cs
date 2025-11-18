@@ -1,5 +1,6 @@
 ﻿using AsistenciaWeb.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace AsistenciaWeb.Controllers
@@ -26,7 +27,7 @@ namespace AsistenciaWeb.Controllers
             if (id == null) return NotFound();
 
             var estudiante = await _context.Estudiantes
-                .FirstOrDefaultAsync(e => e.IdEstudiante == id);
+                .FirstOrDefaultAsync(e => e.id_estudiante == id);
 
             if (estudiante == null) return NotFound();
 
@@ -36,26 +37,55 @@ namespace AsistenciaWeb.Controllers
         // GET: Estudiantes/Create
         public IActionResult Create()
         {
+            ViewBag.Carreras = new SelectList(_context.Carreras, "IdCarrera", "NombreCarrera");
             return View();
         }
 
-        // POST: Estudiantes/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CodigoBarras,Carnet,Nombre,Apellido,Carrera,Estado")] Estudiante estudiante)
+        public async Task<IActionResult> Create([Bind("codigo_barras,carnet,nombre,apellido,IdCarrera,estado")] Estudiante estudiante)
         {
+            Console.WriteLine("VALOR DE estudiante.codigo_barras [" + estudiante.codigo_barras + "]");
+            Console.WriteLine("VALOR DE estudiante.carnet [" + estudiante.carnet + "]");
+            Console.WriteLine("VALOR DE estudiante.nombre [" + estudiante.nombre + "]");
+            Console.WriteLine("VALOR DE estudiante.apellido [" + estudiante.apellido + "]");
+            Console.WriteLine("VALOR DE estudiante.IdCarrera [" + estudiante.IdCarrera + "]");
+            Console.WriteLine("VALOR DE estudiante.estado [" + estudiante.estado + "]");
+            Console.WriteLine("VALOR DE estudiante.IdCarreraNavigation [" + estudiante.IdCarreraNavigation + "]");
+
             if (ModelState.IsValid)
             {
                 _context.Add(estudiante);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            else
+            {
+                Console.WriteLine("VALOR DE estudiante.codigo_barras [" + estudiante.codigo_barras + "]");
+                Console.WriteLine("VALOR DE estudiante.carnet [" + estudiante.carnet + "]");
+                Console.WriteLine("VALOR DE estudiante.nombre [" + estudiante.nombre + "]");
+                Console.WriteLine("VALOR DE estudiante.apellido [" + estudiante.apellido + "]");
+                Console.WriteLine("VALOR DE estudiante.IdCarrera [" + estudiante.IdCarrera + "]");
+                Console.WriteLine("VALOR DE estudiante.estado [" + estudiante.estado + "]");
+                Console.WriteLine("VALOR DE estudiante.IdCarreraNavigation [" + estudiante.IdCarreraNavigation + "]");
+
+                foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    Console.WriteLine("ERROR: " + error.ErrorMessage);
+                }
+            }
+
+            // Recargar el ViewBag en caso de error
+            ViewBag.Carreras = new SelectList(_context.Carreras, "IdCarrera", "NombreCarrera", estudiante.IdCarrera);
+
             return View(estudiante);
         }
+
 
         // GET: Estudiantes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            Console.WriteLine("Valor de [" + id + "]");
             if (id == null) return NotFound();
 
             var estudiante = await _context.Estudiantes.FindAsync(id);
@@ -67,9 +97,9 @@ namespace AsistenciaWeb.Controllers
         // POST: Estudiantes/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdEstudiante,CodigoBarras,Carnet,Nombre,Apellido,Carrera,Estado")] Estudiante estudiante)
+        public async Task<IActionResult> Edit(int id, [Bind("id_estudiante,codigo_barras,carnet,nombre,apellido,IdCarrera,estado")] Estudiante estudiante)
         {
-            if (id != estudiante.IdEstudiante) return NotFound();
+            if (id != estudiante.id_estudiante) return NotFound();
 
             if (ModelState.IsValid)
             {
@@ -80,7 +110,7 @@ namespace AsistenciaWeb.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EstudianteExists(estudiante.IdEstudiante)) return NotFound();
+                    if (!EstudianteExists(estudiante.id_estudiante)) return NotFound();
                     else throw;
                 }
                 return RedirectToAction(nameof(Index));
@@ -94,7 +124,7 @@ namespace AsistenciaWeb.Controllers
             if (id == null) return NotFound();
 
             var estudiante = await _context.Estudiantes
-                .FirstOrDefaultAsync(e => e.IdEstudiante == id);
+                .FirstOrDefaultAsync(e => e.id_estudiante == id);
             if (estudiante == null) return NotFound();
 
             return View(estudiante);
@@ -113,7 +143,7 @@ namespace AsistenciaWeb.Controllers
 
         private bool EstudianteExists(int id)
         {
-            return _context.Estudiantes.Any(e => e.IdEstudiante == id);
+            return _context.Estudiantes.Any(e => e.id_estudiante == id);
         }
     }
 }
