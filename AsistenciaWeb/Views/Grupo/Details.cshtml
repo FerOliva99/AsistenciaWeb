@@ -1,0 +1,18 @@
+﻿@model AsistenciaWeb.Models.Grupo
+
+@{
+    ViewData["Title"] = "Detalles del Grupo";
+}
+
+<h1>Detalles del Grupo</h1>
+
+<ul class="list-group">
+    <li class="list-group-item"><strong>ID Grupo:</strong> @Model.id_grupo</li>
+    <li class="list-group-item"><strong>Materia:</strong> @Model.id_materiaNavigation?.nombre</li>
+    <li class="list-group-item"><strong>Docente:</strong> @Model.id_docenteNavigation?.nombre</li>
+    <li class="list-group-item"><strong>Horario:</strong> @Model.horario</li>
+    <li class="list-group-item"><strong>Aula:</strong> @Model.aula</li>
+</ul>
+
+<a class="btn btn-primary mt-3" asp-action="Edit" asp-route-id="@Model.id_grupo">Editar</a>
+<a class="btn btn-secondary mt-3" asp-action="Index">Volver</a>

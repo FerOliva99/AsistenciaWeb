@@ -1,0 +1,34 @@
+﻿@model AsistenciaWeb.Models.Grupo
+
+@{
+    ViewData["Title"] = "Crear Grupo";
+}
+
+<h1>Crear Grupo</h1>
+
+<form asp-action="Create">
+
+    <div class="form-group">
+        <label>Materia</label>
+        <select asp-for="id_materia" class="form-control" asp-items="@(ViewBag.Materias)"></select>
+    </div>
+
+    <div class="form-group">
+        <label>Docente</label>
+        <select asp-for="id_docente" class="form-control" asp-items="@(ViewBag.Docentes)"></select>
+    </div>
+
+    <div class="form-group">
+        <label>Horario</label>
+        <input asp-for="horario" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Aula</label>
+        <input asp-for="aula" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success mt-3">Guardar</button>
+    <a asp-action="Index" class="btn btn-secondary mt-3">Cancelar</a>
+
+</form>

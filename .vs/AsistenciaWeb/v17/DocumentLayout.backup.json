@@ -1,71 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\diego\\Videos\\AsistenciaWeb\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{25C8A83B-08C6-4E4C-9C55-0AE335AC9A45}|AsistenciaWeb\\AsistenciaWeb.csproj|c:\\users\\diego\\videos\\asistenciaweb\\asistenciaweb\\views\\carrera\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{25C8A83B-08C6-4E4C-9C55-0AE335AC9A45}|AsistenciaWeb\\AsistenciaWeb.csproj|solutionrelative:asistenciaweb\\views\\carrera\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{25C8A83B-08C6-4E4C-9C55-0AE335AC9A45}|AsistenciaWeb\\AsistenciaWeb.csproj|c:\\users\\diego\\videos\\asistenciaweb\\asistenciaweb\\views\\materia\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{25C8A83B-08C6-4E4C-9C55-0AE335AC9A45}|AsistenciaWeb\\AsistenciaWeb.csproj|solutionrelative:asistenciaweb\\views\\materia\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{25C8A83B-08C6-4E4C-9C55-0AE335AC9A45}|AsistenciaWeb\\AsistenciaWeb.csproj|c:\\users\\diego\\videos\\asistenciaweb\\asistenciaweb\\views\\carrera\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{25C8A83B-08C6-4E4C-9C55-0AE335AC9A45}|AsistenciaWeb\\AsistenciaWeb.csproj|solutionrelative:asistenciaweb\\views\\carrera\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 2,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "C:\\Users\\diego\\Videos\\AsistenciaWeb\\AsistenciaWeb\\Views\\Carrera\\Details.cshtml",
-              "RelativeDocumentMoniker": "AsistenciaWeb\\Views\\Carrera\\Details.cshtml",
-              "ToolTip": "C:\\Users\\diego\\Videos\\AsistenciaWeb\\AsistenciaWeb\\Views\\Carrera\\Details.cshtml",
-              "RelativeToolTip": "AsistenciaWeb\\Views\\Carrera\\Details.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-19T06:52:38.896Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Delete.cshtml",
-              "DocumentMoniker": "C:\\Users\\diego\\Videos\\AsistenciaWeb\\AsistenciaWeb\\Views\\Materia\\Delete.cshtml",
-              "RelativeDocumentMoniker": "AsistenciaWeb\\Views\\Materia\\Delete.cshtml",
-              "ToolTip": "C:\\Users\\diego\\Videos\\AsistenciaWeb\\AsistenciaWeb\\Views\\Materia\\Delete.cshtml",
-              "RelativeToolTip": "AsistenciaWeb\\Views\\Materia\\Delete.cshtml",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABQAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-19T06:50:37.289Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Delete.cshtml",
-              "DocumentMoniker": "C:\\Users\\diego\\Videos\\AsistenciaWeb\\AsistenciaWeb\\Views\\Carrera\\Delete.cshtml",
-              "RelativeDocumentMoniker": "AsistenciaWeb\\Views\\Carrera\\Delete.cshtml",
-              "ToolTip": "C:\\Users\\diego\\Videos\\AsistenciaWeb\\AsistenciaWeb\\Views\\Carrera\\Delete.cshtml",
-              "RelativeToolTip": "AsistenciaWeb\\Views\\Carrera\\Delete.cshtml",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-19T06:50:30.025Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }
