@@ -1,0 +1,39 @@
+﻿@model AsistenciaWeb.Models.Carrera
+
+@{
+    ViewData["Title"] = "Editar Carrera";
+}
+
+<h2>Editar Carrera</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="IdCarrera" />
+
+    <div class="form-group">
+        <label>Nombre Carrera</label>
+        <input asp-for="NombreCarrera" class="form-control" />
+        <span asp-validation-for="NombreCarrera" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Duración (Años)</label>
+        <input asp-for="DuracionAnios" type="number" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="estado"></label>
+        <select asp-for="estado" class="form-control">
+            <option value="1">Activo</option>
+            <option value="0">Inactivo</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-success mt-3">Guardar</button>
+    <a asp-action="Index" class="btn btn-secondary mt-3">Cancelar</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
