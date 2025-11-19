@@ -19,7 +19,7 @@
 
     <div class="form-group">
         <label>Carrera</label>
-        <input asp-for="IdCarrera" class="form-control" />
+        <select asp-for="IdCarrera" class="form-control" asp-items="@(ViewBag.Carreras)"></select>
     </div>
 
     <button type="submit" class="btn btn-success mt-3">Guardar</button>

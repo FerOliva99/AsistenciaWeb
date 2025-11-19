@@ -1,0 +1,25 @@
+﻿@model AsistenciaWeb.Models.Grupo
+
+@{
+    ViewData["Title"] = "Eliminar Grupo";
+}
+
+<h1>Eliminar Grupo</h1>
+
+<div>
+    <p>¿Está seguro de que desea eliminar este grupo?</p>
+</div>
+
+<ul class="list-group">
+    <li class="list-group-item"><strong>ID Grupo:</strong> @Model.id_grupo</li>
+    <li class="list-group-item"><strong>Materia:</strong> @Model.id_materiaNavigation?.nombre</li>
+    <li class="list-group-item"><strong>Docente:</strong> @Model.id_docenteNavigation?.nombre</li>
+    <li class="list-group-item"><strong>Horario:</strong> @Model.horario</li>
+    <li class="list-group-item"><strong>Aula:</strong> @Model.aula</li>
+</ul>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="id_grupo" />
+    <button type="submit" class="btn btn-danger mt-3">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary mt-3">Cancelar</a>
+</form>

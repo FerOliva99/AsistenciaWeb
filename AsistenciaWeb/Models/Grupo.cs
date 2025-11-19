@@ -32,9 +32,9 @@ public partial class Grupo
 
     [ForeignKey("id_docente")]
     [InverseProperty("Grupos")]
-    public virtual Docente id_docenteNavigation { get; set; } = null!;
+    public virtual Docente? id_docenteNavigation { get; set; }
 
     [ForeignKey("id_materia")]
     [InverseProperty("Grupos")]
-    public virtual Materium id_materiaNavigation { get; set; } = null!;
+    public virtual Materium? id_materiaNavigation { get; set; }
 }

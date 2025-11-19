@@ -1,0 +1,25 @@
+﻿@model AsistenciaWeb.Models.Carrera
+
+@{
+    ViewData["Title"] = "Eliminar Carrera";
+}
+
+<h1>Eliminar Carrera</h1>
+
+<div>
+    <p>¿Está seguro de que desea eliminar esta carrera?</p>
+</div>
+
+<ul class="list-group">
+    <li class="list-group-item"><strong>Nombre Carrera:</strong> @Model.NombreCarrera</li>
+    <li class="list-group-item"><strong>Duración (Años):</strong> @Model.DuracionAnios</li>
+    <li class="list-group-item"><strong>Estado:</strong> @(Model.estado == 1 ? "Activo" : "Inactivo")</li>
+</ul>
+
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="IdCarrera" />
+
+    <button type="submit" class="btn btn-danger mt-3">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary mt-3">Cancelar</a>
+</form>

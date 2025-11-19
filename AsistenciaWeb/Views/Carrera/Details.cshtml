@@ -1,0 +1,16 @@
+﻿@model AsistenciaWeb.Models.Carrera
+
+@{
+    ViewData["Title"] = "Detalle de Carrera";
+}
+
+<h1>Detalles de Carrera</h1>
+
+<ul class="list-group">
+    <li class="list-group-item"><strong>Nombre Carrera:</strong> @Model.NombreCarrera</li>
+    <li class="list-group-item"><strong>Duración:</strong> @Model.DuracionAnios</li>
+    <li class="list-group-item"><strong>Estado:</strong> @(Model.estado == 1 ? "Activo" : "Inactivo")</li>
+</ul>
+
+<a class="btn btn-primary mt-3" asp-action="Edit" asp-route-id="@Model.IdCarrera">Editar</a>
+<a class="btn btn-secondary mt-3" asp-action="Index">Volver</a>
