@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AsistenciaWeb.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using AsistenciaWeb.Models;
 
 public class MateriaController : Controller
 {
@@ -14,7 +15,7 @@ public class MateriaController : Controller
     // GET: Materia
     public async Task<IActionResult> Index()
     {
-        return View(await _context.Materia.ToListAsync());
+        return View(await _context.Materia.Include(m => m.IdCarreraNavigation).ToListAsync());
     }
 
     // GET: Materia/Details/5
@@ -22,7 +23,7 @@ public class MateriaController : Controller
     {
         if (id == null) return NotFound();
 
-        var materia = await _context.Materia.FirstOrDefaultAsync(m => m.id_materia == id);
+        var materia = await _context.Materia.Include(m => m.IdCarreraNavigation).FirstOrDefaultAsync(m => m.id_materia == id);
 
         if (materia == null) return NotFound();
 
@@ -32,6 +33,7 @@ public class MateriaController : Controller
     // GET: Materia/Create
     public IActionResult Create()
     {
+        ViewBag.Carreras = new SelectList(_context.Carreras, "IdCarrera", "NombreCarrera");
         return View();
     }
 
@@ -46,6 +48,10 @@ public class MateriaController : Controller
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        // Recargar el ViewBag en caso de error
+        ViewBag.Carreras = new SelectList(_context.Carreras, "IdCarrera", "NombreCarrera");
+
         return View(materium);
     }
 
@@ -54,8 +60,12 @@ public class MateriaController : Controller
     {
         if (id == null) return NotFound();
 
-        var materia = await _context.Materia.FindAsync(id);
+        var materia = await _context.Materia.Include(m => m.IdCarreraNavigation).FirstOrDefaultAsync(m => m.id_materia == id);
+        
         if (materia == null) return NotFound();
+
+        // Para llenar el <select>
+        ViewData["IdCarrera"] = new SelectList(_context.Carreras, "IdCarrera", "NombreCarrera", materia.IdCarrera);
 
         return View(materia);
     }
@@ -92,7 +102,7 @@ public class MateriaController : Controller
     {
         if (id == null) return NotFound();
 
-        var materia = await _context.Materia.FirstOrDefaultAsync(m => m.id_materia == id);
+        var materia = await _context.Materia.Include(m => m.IdCarreraNavigation).FirstOrDefaultAsync(m => m.id_materia == id);
         if (materia == null) return NotFound();
 
         return View(materia);

@@ -1,37 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\diego\\Videos\\AsistenciaWeb\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{25C8A83B-08C6-4E4C-9C55-0AE335AC9A45}|AsistenciaWeb\\AsistenciaWeb.csproj|c:\\users\\diego\\videos\\asistenciaweb\\asistenciaweb\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{25C8A83B-08C6-4E4C-9C55-0AE335AC9A45}|AsistenciaWeb\\AsistenciaWeb.csproj|solutionrelative:asistenciaweb\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": ".gitignore",
-              "DocumentMoniker": "C:\\Users\\diego\\Videos\\AsistenciaWeb\\AsistenciaWeb\\.gitignore",
-              "RelativeDocumentMoniker": "AsistenciaWeb\\.gitignore",
-              "ToolTip": "C:\\Users\\diego\\Videos\\AsistenciaWeb\\AsistenciaWeb\\.gitignore",
-              "RelativeToolTip": "AsistenciaWeb\\.gitignore",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-11-19T01:14:11.985Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }

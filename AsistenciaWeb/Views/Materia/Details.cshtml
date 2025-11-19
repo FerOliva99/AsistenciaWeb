@@ -9,7 +9,7 @@
 <ul class="list-group">
     <li class="list-group-item"><strong>Nombre:</strong> @Model.nombre</li>
     <li class="list-group-item"><strong>Código:</strong> @Model.codigo</li>
-    <li class="list-group-item"><strong>Carrera:</strong> @Model.IdCarrera</li>
+    <li class="list-group-item"><strong>Carrera:</strong> @Model.IdCarreraNavigation?.NombreCarrera</li>
 </ul>
 
 <a class="btn btn-primary mt-3" asp-action="Edit" asp-route-id="@Model.id_materia">Editar</a>
