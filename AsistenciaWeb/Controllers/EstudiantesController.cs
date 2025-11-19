@@ -17,7 +17,7 @@ namespace AsistenciaWeb.Controllers
         // GET: Estudiantes
         public async Task<IActionResult> Index()
         {
-            var listaEstudiantes = await _context.Estudiantes.ToListAsync();
+            var listaEstudiantes = await _context.Estudiantes.Include(e => e.IdCarreraNavigation).ToListAsync();
             return View(listaEstudiantes);
         }
 
@@ -26,7 +26,7 @@ namespace AsistenciaWeb.Controllers
         {
             if (id == null) return NotFound();
 
-            var estudiante = await _context.Estudiantes
+            var estudiante = await _context.Estudiantes.Include(e => e.IdCarreraNavigation)
                 .FirstOrDefaultAsync(e => e.id_estudiante == id);
 
             if (estudiante == null) return NotFound();
@@ -45,34 +45,12 @@ namespace AsistenciaWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("codigo_barras,carnet,nombre,apellido,IdCarrera,estado")] Estudiante estudiante)
         {
-            Console.WriteLine("VALOR DE estudiante.codigo_barras [" + estudiante.codigo_barras + "]");
-            Console.WriteLine("VALOR DE estudiante.carnet [" + estudiante.carnet + "]");
-            Console.WriteLine("VALOR DE estudiante.nombre [" + estudiante.nombre + "]");
-            Console.WriteLine("VALOR DE estudiante.apellido [" + estudiante.apellido + "]");
-            Console.WriteLine("VALOR DE estudiante.IdCarrera [" + estudiante.IdCarrera + "]");
-            Console.WriteLine("VALOR DE estudiante.estado [" + estudiante.estado + "]");
-            Console.WriteLine("VALOR DE estudiante.IdCarreraNavigation [" + estudiante.IdCarreraNavigation + "]");
 
             if (ModelState.IsValid)
             {
                 _context.Add(estudiante);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
-            else
-            {
-                Console.WriteLine("VALOR DE estudiante.codigo_barras [" + estudiante.codigo_barras + "]");
-                Console.WriteLine("VALOR DE estudiante.carnet [" + estudiante.carnet + "]");
-                Console.WriteLine("VALOR DE estudiante.nombre [" + estudiante.nombre + "]");
-                Console.WriteLine("VALOR DE estudiante.apellido [" + estudiante.apellido + "]");
-                Console.WriteLine("VALOR DE estudiante.IdCarrera [" + estudiante.IdCarrera + "]");
-                Console.WriteLine("VALOR DE estudiante.estado [" + estudiante.estado + "]");
-                Console.WriteLine("VALOR DE estudiante.IdCarreraNavigation [" + estudiante.IdCarreraNavigation + "]");
-
-                foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
-                {
-                    Console.WriteLine("ERROR: " + error.ErrorMessage);
-                }
             }
 
             // Recargar el ViewBag en caso de error
@@ -85,11 +63,14 @@ namespace AsistenciaWeb.Controllers
         // GET: Estudiantes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            Console.WriteLine("Valor de [" + id + "]");
             if (id == null) return NotFound();
 
-            var estudiante = await _context.Estudiantes.FindAsync(id);
+            var estudiante = await _context.Estudiantes.Include(e => e.IdCarreraNavigation).FirstOrDefaultAsync(e => e.id_estudiante == id);
+            
             if (estudiante == null) return NotFound();
+
+            // Para llenar el <select>
+            ViewData["IdCarrera"] = new SelectList(_context.Carreras, "IdCarrera", "NombreCarrera", estudiante.IdCarrera);
 
             return View(estudiante);
         }
@@ -115,6 +96,10 @@ namespace AsistenciaWeb.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
+            // Si hay error, se debe volver a llenar la lista de carreras
+            ViewData["IdCarrera"] = new SelectList(_context.Carreras, "IdCarrera", "NombreCarrera", estudiante.IdCarrera);
+
             return View(estudiante);
         }
 
@@ -123,7 +108,7 @@ namespace AsistenciaWeb.Controllers
         {
             if (id == null) return NotFound();
 
-            var estudiante = await _context.Estudiantes
+            var estudiante = await _context.Estudiantes.Include(e => e.IdCarreraNavigation)
                 .FirstOrDefaultAsync(e => e.id_estudiante == id);
             if (estudiante == null) return NotFound();
 

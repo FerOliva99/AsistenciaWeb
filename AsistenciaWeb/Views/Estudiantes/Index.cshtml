@@ -32,7 +32,7 @@
                 <td>@estudiante.carnet</td>
                 <td>@estudiante.nombre</td>
                 <td>@estudiante.apellido</td>
-                <td>@estudiante.IdCarrera</td>
+                <td>@estudiante.IdCarreraNavigation?.NombreCarrera</td>
                 <td>@(estudiante.estado == 1 ? "Activo" : "Inactivo")</td>
                 <td>
                     <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@estudiante.id_estudiante">Detalles</a>
