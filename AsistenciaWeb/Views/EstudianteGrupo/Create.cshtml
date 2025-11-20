@@ -1,0 +1,17 @@
+﻿@model AsistenciaWeb.Models.Estudiante_Grupo
+
+<form asp-action="Create" method="post">
+    <div>
+        <label>Estudiante</label>
+        <select asp-for="id_estudiante" asp-items="@(new SelectList(ViewData["Estudiantes"] as List<Estudiante>, "id_estudiante", "nombre"))">
+        </select>
+    </div>
+
+    <div>
+        <label>Grupo</label>
+        <select asp-for="id_grupo" asp-items="@(new SelectList(ViewData["Grupos"] as List<Grupo>, "id_grupo", "nombre"))">
+        </select>
+    </div>
+
+    <button type="submit">Guardar</button>
+</form>

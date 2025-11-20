@@ -1,0 +1,43 @@
+﻿@model AsistenciaWeb.Models.Estudiante_Grupo
+
+@{
+    ViewData["Title"] = "Editar Registro";
+}
+
+<h2>Editar Registro</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="id_estudiante_grupo" />
+
+    <div class="card shadow-sm p-4 mt-3">
+
+        <!-- Estudiante -->
+        <div class="form-group mb-3">
+            <label class="form-label">Estudiante</label>
+            <select asp-for="id_estudiante"
+                    class="form-select"
+                    asp-items="@(ViewBag.Estudiantes)">
+            </select>
+            <span asp-validation-for="id_estudiante" class="text-danger"></span>
+        </div>
+
+        <!-- Grupo -->
+        <div class="form-group mb-3">
+            <label class="form-label">Grupo</label>
+            <select asp-for="id_grupo"
+                    class="form-select"
+                    asp-items="@(ViewBag.Grupos)">
+            </select>
+            <span asp-validation-for="id_grupo" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Guardar Cambios</button>
+        <a asp-action="Index" class="btn btn-secondary mt-3">Cancelar</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

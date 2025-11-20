@@ -1,0 +1,62 @@
+﻿@model AsistenciaWeb.Models.Estudiante_Grupo
+
+@{
+    ViewData["Title"] = "Detalle del Registro";
+}
+
+<h2>Eliminar Estudiante del Grupo</h2>
+
+<h3>¿Seguro que quieres eliminar este registro?</h3>
+
+<div class="card shadow-sm p-4 mt-3">
+    <h4 class="mb-3">Información del Estudiante</h4>
+    <dl class="row">
+        <dt class="col-sm-3">Nombre</dt>
+        <dd class="col-sm-9">
+            @Model.id_estudianteNavigation.nombre @Model.id_estudianteNavigation.apellido
+        </dd>
+
+        <dt class="col-sm-3">Carnet</dt>
+        <dd class="col-sm-9">
+            @Model.id_estudianteNavigation.carnet
+        </dd>
+    </dl>
+
+    <hr />
+
+    <h4 class="mb-3">Información del Grupo</h4>
+    <dl class="row">
+        <dt class="col-sm-3">ID Grupo</dt>
+        <dd class="col-sm-9">
+            @Model.id_grupoNavigation.id_grupo
+        </dd>
+
+        <dt class="col-sm-3">Materia</dt>
+        <dd class="col-sm-9">
+            @Model.id_grupoNavigation.id_materiaNavigation.nombre
+            ( @Model.id_grupoNavigation.id_materiaNavigation.codigo )
+        </dd>
+
+        <dt class="col-sm-3">Docente</dt>
+        <dd class="col-sm-9">
+            @Model.id_grupoNavigation.id_docenteNavigation.nombre
+            @Model.id_grupoNavigation.id_docenteNavigation.apellido
+        </dd>
+
+        <dt class="col-sm-3">Horario</dt>
+        <dd class="col-sm-9">
+            @Model.id_grupoNavigation.horario
+        </dd>
+
+        <dt class="col-sm-3">Aula</dt>
+        <dd class="col-sm-9">
+            @Model.id_grupoNavigation.aula
+        </dd>
+    </dl>
+</div>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="id_estudiante_grupo" />
+    <button type="submit" class="btn btn-danger mt-3">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary mt-3">Cancelar</a>
+</form>

@@ -18,9 +18,9 @@ public partial class Estudiante_Grupo
 
     [ForeignKey("id_estudiante")]
     [InverseProperty("Estudiante_Grupos")]
-    public virtual Estudiante id_estudianteNavigation { get; set; } = null!;
+    public virtual Estudiante? id_estudianteNavigation { get; set; }
 
     [ForeignKey("id_grupo")]
     [InverseProperty("Estudiante_Grupos")]
-    public virtual Grupo id_grupoNavigation { get; set; } = null!;
+    public virtual Grupo? id_grupoNavigation { get; set; }
 }

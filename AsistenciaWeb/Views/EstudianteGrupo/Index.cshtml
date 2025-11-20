@@ -1,0 +1,87 @@
+﻿@model IEnumerable<AsistenciaWeb.Models.Estudiante_Grupo>
+
+@{
+    ViewData["Title"] = "Estudiantes por Grupo";
+}
+
+<h2>Listado de Estudiantes por Grupo</h2>
+
+<form method="get" class="card p-3 mb-3">
+    <h5>Filtros</h5>
+
+    <div class="row">
+        <div class="col-md-2">
+            <label>Grupo</label>
+            <input name="grupo" class="form-control" type="number" value="@ViewData["grupo"]" />
+        </div>
+
+        <div class="col-md-2">
+            <label>Materia</label>
+            <input name="materia" class="form-control" value="@ViewData["materia"]" />
+        </div>
+
+        <div class="col-md-2">
+            <label>Código</label>
+            <input name="codigo" class="form-control" value="@ViewData["codigo"]" />
+        </div>
+
+        <div class="col-md-2">
+            <label>Docente</label>
+            <input name="docente" class="form-control" value="@ViewData["docente"]" />
+        </div>
+
+        <div class="col-md-2">
+            <label>Estudiante</label>
+            <input name="estudiante" class="form-control" value="@ViewData["estudiante"]" />
+        </div>
+
+        <div class="col-md-2">
+            <label>&nbsp;</label>
+            <button class="btn btn-primary w-100">Consultar</button>
+            <a class="btn btn-secondary w-100 mt-3" href="@Url.Action("Index", "EstudianteGrupo")">Limpiar</a>
+        </div>
+    </div>
+</form>
+
+<p>
+    <a class="btn btn-primary" href="@Url.Action("Create")">Agregar Estudiante a Grupo</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Grupo</th>
+            <th>Materia</th>
+            <th>Código</th>
+            <th>Aula</th>
+            <th>Docente</th>
+            <th>Estudiante</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            var grupo = item.id_grupoNavigation;
+            var materia = grupo?.id_materiaNavigation;
+            var docente = grupo?.id_docenteNavigation;
+            var estudiante = item.id_estudianteNavigation;
+
+            <tr>
+                <td>@grupo?.id_grupo</td>
+                <td>@materia?.nombre</td>
+                <td>@materia?.codigo</td>
+                <td>@grupo?.aula</td>
+                <td>@docente?.nombre @docente?.apellido</td>
+                <td>@estudiante?.nombre @estudiante?.apellido</td>
+
+                <td>
+                    <a href="@Url.Action("Details", new { id = item.id_estudiante_grupo })" class="btn btn-info btn-sm">Detalles</a>
+                    <a href="@Url.Action("Edit", new { id = item.id_estudiante_grupo })" class="btn btn-warning btn-sm">Editar</a>
+                    <a href="@Url.Action("Delete", new { id = item.id_estudiante_grupo })" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
