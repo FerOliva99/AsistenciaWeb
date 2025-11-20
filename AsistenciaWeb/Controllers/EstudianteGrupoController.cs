@@ -191,5 +191,26 @@ namespace AsistenciaWeb.Controllers
 
             return View(data);
         }
+
+        public async Task<IActionResult> GetGrupoInfo(int id)
+        {
+            var grupo = await _context.Grupos
+                .Include(m => m.id_materiaNavigation)
+                .Include(d => d.id_docenteNavigation)
+                .FirstOrDefaultAsync(g => g.id_grupo == id);
+
+            if (grupo == null)
+                return NotFound();
+
+            return Json(new
+            {
+                materia = grupo.id_materiaNavigation?.nombre,
+                codigo = grupo.id_materiaNavigation?.codigo,
+                docente = $"{grupo.id_docenteNavigation?.nombre} {grupo.id_docenteNavigation?.apellido}",
+                horario = grupo.horario,
+                aula = grupo.aula
+            });
+        }
+
     }
 }

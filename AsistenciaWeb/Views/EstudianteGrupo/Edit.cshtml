@@ -16,9 +16,21 @@
             <label class="form-label">Estudiante</label>
             <select asp-for="id_estudiante"
                     class="form-select"
-                    asp-items="@(ViewBag.Estudiantes)">
+                    asp-items="@(ViewBag.Estudiantes)" disabled>
             </select>
             <span asp-validation-for="id_estudiante" class="text-danger"></span>
+        </div>
+
+        <!-- Campo oculto REAL para el POST -->
+        <input type="hidden" asp-for="id_estudiante" />
+
+        <!-- Información del Estudiante -->
+        <div class="card p-3 mt-3">
+            <h5>Información del Estudiante</h5>
+
+            <p><strong>Nombre:</strong> @Model.id_estudianteNavigation.nombre</p>
+            <p><strong>Apellido:</strong> @Model.id_estudianteNavigation.apellido</p>
+            <p><strong>Código:</strong> @Model.id_estudianteNavigation.carnet</p>
         </div>
 
         <!-- Grupo -->
@@ -31,6 +43,17 @@
             <span asp-validation-for="id_grupo" class="text-danger"></span>
         </div>
 
+        <div class="card p-3 mt-3" id="infoGrupo" style="display:none;">
+            <h5>Información del Grupo</h5>
+
+            <p><strong>Materia:</strong> <span id="gMateria"></span></p>
+            <p><strong>Código:</strong> <span id="gCodigo"></span></p>
+            <p><strong>Docente:</strong> <span id="gDocente"></span></p>
+            <p><strong>Horario:</strong> <span id="gHorario"></span></p>
+            <p><strong>Aula:</strong> <span id="gAula"></span></p>
+        </div>
+
+
         <button type="submit" class="btn btn-primary mt-3">Guardar Cambios</button>
         <a asp-action="Index" class="btn btn-secondary mt-3">Cancelar</a>
     </div>
@@ -39,5 +62,33 @@
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
+
+        <script>
+            function cargarGrupo(id) {
+                if (!id) return;
+
+                $.get('/EstudianteGrupo/GetGrupoInfo', { id: id }, function (data) {
+
+                    $("#gMateria").text(data.materia);
+                    $("#gCodigo").text(data.codigo);
+                    $("#gDocente").text(data.docente);
+                    $("#gHorario").text(data.horario);
+                    $("#gAula").text(data.aula);
+
+                    $("#infoGrupo").show();
+                })
+                .fail(function () {
+                    $("#infoGrupo").hide();
+                });
+            }
+
+            // Cuando cambie el dropdown
+            $("#IdGrupo, #id_grupo").change(function () {
+                cargarGrupo($(this).val());
+            });
+
+            // Al cargar la página, cargar los datos del grupo seleccionado
+            cargarGrupo($("#IdGrupo, #id_grupo").val());
+        </script>
     }
 }
