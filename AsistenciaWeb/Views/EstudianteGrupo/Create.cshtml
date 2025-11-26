@@ -1,17 +1,106 @@
 ﻿@model AsistenciaWeb.Models.Estudiante_Grupo
 
+<h2>Asignar Estudiante a Grupo</h2>
+
 <form asp-action="Create" method="post">
-    <div>
-        <label>Estudiante</label>
-        <select asp-for="id_estudiante" asp-items="@(new SelectList(ViewData["Estudiantes"] as List<Estudiante>, "id_estudiante", "nombre"))">
-        </select>
+
+    <!-- Código de carnet -->
+    <div class="form-group mb-3">
+        <label class="form-label">Código de Carnet</label>
+        <input id="codigoCarnet" class="form-control" placeholder="Ingrese código de carnet" />
+
+        <button type="button" class="btn btn-primary mt-2" onkeypress="buscarEstudiante()" onclick="buscarEstudiante()">
+            Buscar Estudiante
+        </button>
     </div>
 
-    <div>
-        <label>Grupo</label>
-        <select asp-for="id_grupo" asp-items="@(new SelectList(ViewData["Grupos"] as List<Grupo>, "id_grupo", "nombre"))">
-        </select>
+    <!-- Datos del estudiante -->
+    <div class="card p-3 mb-3" id="infoEstudiante" style="display:none;">
+        <h5>Información del Estudiante</h5>
+
+        <p><strong>Nombre:</strong> <span id="eNombre"></span></p>
+        <p><strong>Apellido:</strong> <span id="eApellido"></span></p>
     </div>
 
-    <button type="submit">Guardar</button>
+    <!-- Campo oculto donde guardo el ID del estudiante encontrado -->
+    <input type="hidden" asp-for="id_estudiante" />
+
+    <!-- Grupo -->
+    <div class="form-group mb-3">
+        <label class="form-label">Grupo</label>
+        <select asp-for="id_grupo" class="form-select" asp-items="@(ViewBag.Grupos)"></select>
+    </div>
+
+    <div class="card p-3 mt-3" id="infoGrupo" style="display:none;">
+        <h5>Información del Grupo</h5>
+
+        <p><strong>Materia:</strong> <span id="gMateria"></span></p>
+        <p><strong>Código:</strong> <span id="gCodigo"></span></p>
+        <p><strong>Docente:</strong> <span id="gDocente"></span></p>
+        <p><strong>Horario:</strong> <span id="gHorario"></span></p>
+        <p><strong>Aula:</strong> <span id="gAula"></span></p>
+    </div>
+
+    <button type="submit" class="btn btn-success mt-3">Guardar</button>
 </form>
+
+@section Scripts {
+    <script>
+        function buscarEstudiante() {
+            let codigo = $("#codigoCarnet").val();
+
+            if (!codigo) {
+                alert("Debe ingresar un código de carnet.");
+                return;
+            }
+
+            $.get('/EstudianteGrupo/BuscarEstudiantePorCodigo', { codigo: codigo }, function (data) {
+
+                if (!data) {
+                    alert("No se encontró un estudiante con ese código.");
+                    $("#infoEstudiante").hide();
+                    return;
+                }
+
+                // Colocar datos en pantalla
+                $("#eNombre").text(data.nombre);
+                $("#eApellido").text(data.apellido);
+                $("#eCarrera").text(data.carrera);
+
+                $("#infoEstudiante").show();
+
+                // Colocar ID real en el form
+                $("#id_estudiante").val(data.id);
+
+            });
+        }
+    </script>
+
+    <script>
+        function cargarGrupo(id) {
+            if (!id) return;
+
+            $.get('/EstudianteGrupo/GetGrupoInfo', { id: id }, function (data) {
+
+                $("#gMateria").text(data.materia);
+                $("#gCodigo").text(data.codigo);
+                $("#gDocente").text(data.docente);
+                $("#gHorario").text(data.horario);
+                $("#gAula").text(data.aula);
+
+                $("#infoGrupo").show();
+            })
+            .fail(function () {
+                $("#infoGrupo").hide();
+            });
+        }
+
+        // Cuando cambie el dropdown
+        $("#IdGrupo, #id_grupo").change(function () {
+            cargarGrupo($(this).val());
+        });
+
+        // Al cargar la página, cargar los datos del grupo seleccionado
+        cargarGrupo($("#IdGrupo, #id_grupo").val());
+    </script>
+}

@@ -72,28 +72,28 @@ namespace AsistenciaWeb.Controllers
         public IActionResult Create()
         {
             // Cargar listas para dropdowns si quieres elegir Estudiante y Grupo
-            ViewData["Estudiantes"] = _context.Estudiantes.ToList();
-            ViewData["Grupos"] = _context.Grupos.ToList();
+            //ViewData["Estudiantes"] = _context.Estudiantes.ToList();
+            //ViewData["Grupos"] = _context.Grupos.ToList();
+            ViewBag.Grupos = new SelectList(_context.Grupos, "id_grupo", "id_grupo");
             return View();
         }
 
-        // POST: EstudianteGrupo/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id_estudiante,id_grupo")] Estudiante_Grupo estudianteGrupo)
+        public async Task<IActionResult> Create(Estudiante_Grupo model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _context.Add(estudianteGrupo);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ViewBag.Grupos = new SelectList(_context.Grupos, "id_grupo", "id_grupo");
+                return View(model);
             }
 
-            // Si hay errores, recargar listas
-            ViewData["Estudiantes"] = _context.Estudiantes.ToList();
-            ViewData["Grupos"] = _context.Grupos.ToList();
-            return View(estudianteGrupo);
+            _context.Add(model);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
         }
+
 
         public async Task<IActionResult> Details(int id)
         {
@@ -211,6 +211,20 @@ namespace AsistenciaWeb.Controllers
                 aula = grupo.aula
             });
         }
+        public async Task<IActionResult> BuscarEstudiantePorCodigo(string codigo)
+        {
+            var estudiante = await _context.Estudiantes
+                .FirstOrDefaultAsync(e => e.carnet == codigo);
 
+            if (estudiante == null)
+                return Json(null);
+
+            return Json(new
+            {
+                id = estudiante.id_estudiante,
+                nombre = estudiante.nombre,
+                apellido = estudiante.apellido
+            });
+        }
     }
 }

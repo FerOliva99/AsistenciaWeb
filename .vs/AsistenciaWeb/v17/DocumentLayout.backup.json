@@ -3,24 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\diego\\Videos\\AsistenciaWeb\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{25C8A83B-08C6-4E4C-9C55-0AE335AC9A45}|AsistenciaWeb\\AsistenciaWeb.csproj|c:\\users\\diego\\videos\\asistenciaweb\\asistenciaweb\\models\\midbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{25C8A83B-08C6-4E4C-9C55-0AE335AC9A45}|AsistenciaWeb\\AsistenciaWeb.csproj|solutionrelative:asistenciaweb\\models\\midbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{25C8A83B-08C6-4E4C-9C55-0AE335AC9A45}|AsistenciaWeb\\AsistenciaWeb.csproj|c:\\users\\diego\\videos\\asistenciaweb\\asistenciaweb\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{25C8A83B-08C6-4E4C-9C55-0AE335AC9A45}|AsistenciaWeb\\AsistenciaWeb.csproj|solutionrelative:asistenciaweb\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{25C8A83B-08C6-4E4C-9C55-0AE335AC9A45}|AsistenciaWeb\\AsistenciaWeb.csproj|c:\\users\\diego\\videos\\asistenciaweb\\asistenciaweb\\views\\estudiantegrupo\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{25C8A83B-08C6-4E4C-9C55-0AE335AC9A45}|AsistenciaWeb\\AsistenciaWeb.csproj|solutionrelative:asistenciaweb\\views\\estudiantegrupo\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{25C8A83B-08C6-4E4C-9C55-0AE335AC9A45}|AsistenciaWeb\\AsistenciaWeb.csproj|c:\\users\\diego\\videos\\asistenciaweb\\asistenciaweb\\views\\estudiantegrupo\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{25C8A83B-08C6-4E4C-9C55-0AE335AC9A45}|AsistenciaWeb\\AsistenciaWeb.csproj|solutionrelative:asistenciaweb\\views\\estudiantegrupo\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{25C8A83B-08C6-4E4C-9C55-0AE335AC9A45}|AsistenciaWeb\\AsistenciaWeb.csproj|c:\\users\\diego\\videos\\asistenciaweb\\asistenciaweb\\views\\estudiantegrupo\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{25C8A83B-08C6-4E4C-9C55-0AE335AC9A45}|AsistenciaWeb\\AsistenciaWeb.csproj|solutionrelative:asistenciaweb\\views\\estudiantegrupo\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{25C8A83B-08C6-4E4C-9C55-0AE335AC9A45}|AsistenciaWeb\\AsistenciaWeb.csproj|c:\\users\\diego\\videos\\asistenciaweb\\asistenciaweb\\controllers\\estudiantegrupocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{25C8A83B-08C6-4E4C-9C55-0AE335AC9A45}|AsistenciaWeb\\AsistenciaWeb.csproj|solutionrelative:asistenciaweb\\controllers\\estudiantegrupocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{25C8A83B-08C6-4E4C-9C55-0AE335AC9A45}|AsistenciaWeb\\AsistenciaWeb.csproj|c:\\users\\diego\\videos\\asistenciaweb\\asistenciaweb\\models\\estudiante_grupo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{25C8A83B-08C6-4E4C-9C55-0AE335AC9A45}|AsistenciaWeb\\AsistenciaWeb.csproj|solutionrelative:asistenciaweb\\models\\estudiante_grupo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{25C8A83B-08C6-4E4C-9C55-0AE335AC9A45}|AsistenciaWeb\\AsistenciaWeb.csproj|c:\\users\\diego\\videos\\asistenciaweb\\asistenciaweb\\models\\grupo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{25C8A83B-08C6-4E4C-9C55-0AE335AC9A45}|AsistenciaWeb\\AsistenciaWeb.csproj|solutionrelative:asistenciaweb\\models\\grupo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,71 +30,71 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "C:\\Users\\diego\\Videos\\AsistenciaWeb\\AsistenciaWeb\\Views\\EstudianteGrupo\\Details.cshtml",
-              "RelativeDocumentMoniker": "AsistenciaWeb\\Views\\EstudianteGrupo\\Details.cshtml",
-              "ToolTip": "C:\\Users\\diego\\Videos\\AsistenciaWeb\\AsistenciaWeb\\Views\\EstudianteGrupo\\Details.cshtml",
-              "RelativeToolTip": "AsistenciaWeb\\Views\\EstudianteGrupo\\Details.cshtml",
-              "ViewState": "AgIAACoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-20T22:25:30.06Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Edit.cshtml",
-              "DocumentMoniker": "C:\\Users\\diego\\Videos\\AsistenciaWeb\\AsistenciaWeb\\Views\\EstudianteGrupo\\Edit.cshtml",
-              "RelativeDocumentMoniker": "AsistenciaWeb\\Views\\EstudianteGrupo\\Edit.cshtml",
-              "ToolTip": "C:\\Users\\diego\\Videos\\AsistenciaWeb\\AsistenciaWeb\\Views\\EstudianteGrupo\\Edit.cshtml",
-              "RelativeToolTip": "AsistenciaWeb\\Views\\EstudianteGrupo\\Edit.cshtml",
-              "ViewState": "AgIAAFIAAAAAAAAAAAAswF0AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-20T21:54:38.868Z",
+              "Title": "MiDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\diego\\Videos\\AsistenciaWeb\\AsistenciaWeb\\Models\\MiDbContext.cs",
+              "RelativeDocumentMoniker": "AsistenciaWeb\\Models\\MiDbContext.cs",
+              "ToolTip": "C:\\Users\\diego\\Videos\\AsistenciaWeb\\AsistenciaWeb\\Models\\MiDbContext.cs",
+              "RelativeToolTip": "AsistenciaWeb\\Models\\MiDbContext.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAuwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T21:56:06.854Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\diego\\Videos\\AsistenciaWeb\\AsistenciaWeb\\appsettings.json",
+              "RelativeDocumentMoniker": "AsistenciaWeb\\appsettings.json",
+              "ToolTip": "C:\\Users\\diego\\Videos\\AsistenciaWeb\\AsistenciaWeb\\appsettings.json",
+              "RelativeToolTip": "AsistenciaWeb\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-11-26T21:55:48.776Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "EstudianteGrupoController.cs",
               "DocumentMoniker": "C:\\Users\\diego\\Videos\\AsistenciaWeb\\AsistenciaWeb\\Controllers\\EstudianteGrupoController.cs",
               "RelativeDocumentMoniker": "AsistenciaWeb\\Controllers\\EstudianteGrupoController.cs",
               "ToolTip": "C:\\Users\\diego\\Videos\\AsistenciaWeb\\AsistenciaWeb\\Controllers\\EstudianteGrupoController.cs",
               "RelativeToolTip": "AsistenciaWeb\\Controllers\\EstudianteGrupoController.cs",
-              "ViewState": "AgIAAMAAAAAAAAAAAAAswNUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAOIAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-20T21:53:29.397Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Grupo.cs",
-              "DocumentMoniker": "C:\\Users\\diego\\Videos\\AsistenciaWeb\\AsistenciaWeb\\Models\\Grupo.cs",
-              "RelativeDocumentMoniker": "AsistenciaWeb\\Models\\Grupo.cs",
-              "ToolTip": "C:\\Users\\diego\\Videos\\AsistenciaWeb\\AsistenciaWeb\\Models\\Grupo.cs",
-              "RelativeToolTip": "AsistenciaWeb\\Models\\Grupo.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAzwCgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-20T21:51:25.755Z",
+              "DocumentIndex": 2,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\diego\\Videos\\AsistenciaWeb\\AsistenciaWeb\\Views\\EstudianteGrupo\\Edit.cshtml",
+              "RelativeDocumentMoniker": "AsistenciaWeb\\Views\\EstudianteGrupo\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\diego\\Videos\\AsistenciaWeb\\AsistenciaWeb\\Views\\EstudianteGrupo\\Edit.cshtml",
+              "RelativeToolTip": "AsistenciaWeb\\Views\\EstudianteGrupo\\Edit.cshtml",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAAAE4AAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-26T21:45:57.239Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Estudiante_Grupo.cs",
-              "DocumentMoniker": "C:\\Users\\diego\\Videos\\AsistenciaWeb\\AsistenciaWeb\\Models\\Estudiante_Grupo.cs",
-              "RelativeDocumentMoniker": "AsistenciaWeb\\Models\\Estudiante_Grupo.cs",
-              "ToolTip": "C:\\Users\\diego\\Videos\\AsistenciaWeb\\AsistenciaWeb\\Models\\Estudiante_Grupo.cs",
-              "RelativeToolTip": "AsistenciaWeb\\Models\\Estudiante_Grupo.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAcwBoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-20T21:51:06.256Z",
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\diego\\Videos\\AsistenciaWeb\\AsistenciaWeb\\Views\\EstudianteGrupo\\Create.cshtml",
+              "RelativeDocumentMoniker": "AsistenciaWeb\\Views\\EstudianteGrupo\\Create.cshtml",
+              "ToolTip": "C:\\Users\\diego\\Videos\\AsistenciaWeb\\AsistenciaWeb\\Views\\EstudianteGrupo\\Create.cshtml",
+              "RelativeToolTip": "AsistenciaWeb\\Views\\EstudianteGrupo\\Create.cshtml",
+              "ViewState": "AgIAABQAAAAAAAAAAAAUwB4AAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-20T23:08:03.716Z",
               "EditorCaption": ""
             }
           ]
