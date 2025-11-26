@@ -24,6 +24,10 @@ public partial class Docente
     [Unicode(false)]
     public string? correo { get; set; }
 
+    [StringLength(25)]
+    [Unicode(false)]
+    public string? contrasena { get; set; }
+
     [InverseProperty("id_docenteNavigation")]
     public virtual ICollection<Grupo> Grupos { get; set; } = new List<Grupo>();
 }
