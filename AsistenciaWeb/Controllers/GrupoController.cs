@@ -1,4 +1,5 @@
 ﻿using AsistenciaWeb.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,7 @@ namespace AsistenciaWeb.Controllers
             _context = context;
         }
 
+        [Authorize]
         // GET: Grupo
         public async Task<IActionResult> Index()
         {
@@ -25,6 +27,7 @@ namespace AsistenciaWeb.Controllers
             return View(grupos);
         }
 
+        [Authorize]
         // GET: Grupo/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -42,6 +45,7 @@ namespace AsistenciaWeb.Controllers
             return View(grupo);
         }
 
+        [Authorize]
         // GET: Grupo/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -59,6 +63,7 @@ namespace AsistenciaWeb.Controllers
             return View(grupo);
         }
 
+        [Authorize]
         // POST: Grupo/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -74,6 +79,7 @@ namespace AsistenciaWeb.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize]
         // GET: Grupo/Create
         public IActionResult Create()
         {
@@ -83,6 +89,7 @@ namespace AsistenciaWeb.Controllers
             return View();
         }
 
+        [Authorize]
         // POST: Grupo/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -102,6 +109,7 @@ namespace AsistenciaWeb.Controllers
             return View(grupo);
         }
 
+        [Authorize]
         // GET: Grupo/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -118,6 +126,7 @@ namespace AsistenciaWeb.Controllers
             return View(grupo);
         }
 
+        [Authorize]
         // POST: Grupo/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]

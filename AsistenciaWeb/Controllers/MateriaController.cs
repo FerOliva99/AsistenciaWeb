@@ -1,4 +1,5 @@
 ﻿using AsistenciaWeb.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,12 +13,14 @@ public class MateriaController : Controller
         _context = context;
     }
 
+    [Authorize]
     // GET: Materia
     public async Task<IActionResult> Index()
     {
         return View(await _context.Materia.Include(m => m.IdCarreraNavigation).ToListAsync());
     }
 
+    [Authorize]
     // GET: Materia/Details/5
     public async Task<IActionResult> Details(int? id)
     {
@@ -30,6 +33,7 @@ public class MateriaController : Controller
         return View(materia);
     }
 
+    [Authorize]
     // GET: Materia/Create
     public IActionResult Create()
     {
@@ -37,6 +41,7 @@ public class MateriaController : Controller
         return View();
     }
 
+    [Authorize]
     // POST: Materia/Create
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -55,6 +60,7 @@ public class MateriaController : Controller
         return View(materium);
     }
 
+    [Authorize]
     // GET: Materia/Edit/5
     public async Task<IActionResult> Edit(int? id)
     {
@@ -70,6 +76,7 @@ public class MateriaController : Controller
         return View(materia);
     }
 
+    [Authorize]
     // POST: Materia/Edit/5
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -97,6 +104,7 @@ public class MateriaController : Controller
         return View(materium);
     }
 
+    [Authorize]
     // GET: Materia/Delete/5
     public async Task<IActionResult> Delete(int? id)
     {
@@ -108,6 +116,7 @@ public class MateriaController : Controller
         return View(materia);
     }
 
+    [Authorize]
     // POST: Materia/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]

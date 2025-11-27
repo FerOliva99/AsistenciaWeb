@@ -1,4 +1,5 @@
 ﻿using AsistenciaWeb.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,7 @@ namespace AsistenciaWeb.Controllers
             _context = context;
         }
 
+        [Authorize]
         public async Task<IActionResult> Index(string? grupo, string? materia, string? codigo, string? docente, string? estudiante)
         {
             // Verificar si hay filtros activos
@@ -68,6 +70,7 @@ namespace AsistenciaWeb.Controllers
             return View(await datos.ToListAsync());
         }
 
+        [Authorize]
         // GET: EstudianteGrupo/Create
         public IActionResult Create()
         {
@@ -78,6 +81,7 @@ namespace AsistenciaWeb.Controllers
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Estudiante_Grupo model)
@@ -94,7 +98,7 @@ namespace AsistenciaWeb.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
+        [Authorize]
         public async Task<IActionResult> Details(int id)
         {
             var registro = await _context.Estudiante_Grupos
@@ -110,6 +114,7 @@ namespace AsistenciaWeb.Controllers
             return View(registro);
         }
 
+        [Authorize]
         public async Task<IActionResult> Delete(int id)
         {
             var registro = await _context.Estudiante_Grupos
@@ -125,6 +130,7 @@ namespace AsistenciaWeb.Controllers
             return View(registro);
         }
 
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -139,9 +145,7 @@ namespace AsistenciaWeb.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // -------------------------------
-        // EDIT - GET
-        // -------------------------------
+        [Authorize]
         public async Task<IActionResult> Edit(int id)
         {
             var registro = await _context.Estudiante_Grupos
@@ -165,9 +169,7 @@ namespace AsistenciaWeb.Controllers
             return View(registro);
         }
 
-        // -------------------------------
-        // EDIT - POST
-        // -------------------------------
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Estudiante_Grupo data)

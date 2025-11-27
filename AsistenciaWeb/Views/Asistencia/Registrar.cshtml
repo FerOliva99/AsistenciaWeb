@@ -1,0 +1,13 @@
+﻿@model AsistenciaWeb.Models.Grupo
+
+<h1>Registrar Asistencia</h1>
+
+<h3 class="mt-2">Detalles del Grupo</h3>
+
+<ul class="list-group">
+    <li class="list-group-item"><strong>ID Grupo:</strong> @Model.id_grupo</li>
+    <li class="list-group-item"><strong>Materia:</strong> @Model.id_materiaNavigation?.nombre</li>
+    <li class="list-group-item"><strong>Docente:</strong> @Model.id_docenteNavigation?.nombre</li>
+    <li class="list-group-item"><strong>Horario:</strong> @Model.horario</li>
+    <li class="list-group-item"><strong>Aula:</strong> @Model.aula</li>
+</ul>

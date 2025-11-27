@@ -2,11 +2,13 @@
 
 <h2>Mis Grupos</h2>
 
-<table>
+<table class="table table-bordered table-striped">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Nombre</th>
+            <th>ID Grupo</th>
+            <th>Horario</th>
+            <th>Aula</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -14,6 +16,11 @@
         {
             <tr>
                 <td>@grupo.id_grupo</td>
+                <td>@grupo.horario</td>
+                <td>@grupo.aula</td>
+                <td>
+                    <a class="btn btn-info btn-sm align-items-center" asp-controller="Asistencia" asp-action="Registrar" asp-route-id="@grupo.id_grupo">Habilitar Asistencia</a>
+                </td>
             </tr>
         }
     </tbody>

@@ -1,4 +1,5 @@
 ﻿using AsistenciaWeb.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,6 +14,7 @@ namespace AsistenciaWeb.Controllers
             _context = context;
         }
 
+        [Authorize]
         // GET: Carrera
         public async Task<IActionResult> Index()
         {
@@ -20,6 +22,7 @@ namespace AsistenciaWeb.Controllers
             return View(lista);
         }
 
+        [Authorize]
         // GET: Carrera/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -33,12 +36,14 @@ namespace AsistenciaWeb.Controllers
             return View(carrera);
         }
 
+        [Authorize]
         // GET: Carrera/Create
         public IActionResult Create()
         {
             return View();
         }
 
+        [Authorize]
         // POST: Carrera/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -53,6 +58,7 @@ namespace AsistenciaWeb.Controllers
             return View(carrera);
         }
 
+        [Authorize]
         // GET: Carrera/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -65,6 +71,7 @@ namespace AsistenciaWeb.Controllers
             return View(carrera);
         }
 
+        [Authorize]
         // POST: Carrera/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -91,6 +98,7 @@ namespace AsistenciaWeb.Controllers
             return View(carrera);
         }
 
+        [Authorize]
         // GET: Carrera/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -104,6 +112,7 @@ namespace AsistenciaWeb.Controllers
             return View(carrera);
         }
 
+        [Authorize]
         // POST: Carrera/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

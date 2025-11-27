@@ -1,4 +1,5 @@
 ﻿using AsistenciaWeb.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,7 @@ namespace AsistenciaWeb.Controllers
             _context = context;
         }
 
+        [Authorize]
         // GET: Estudiantes
         public async Task<IActionResult> Index()
         {
@@ -21,6 +23,7 @@ namespace AsistenciaWeb.Controllers
             return View(listaEstudiantes);
         }
 
+        [Authorize]
         // GET: Estudiantes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -34,6 +37,7 @@ namespace AsistenciaWeb.Controllers
             return View(estudiante);
         }
 
+        [Authorize]
         // GET: Estudiantes/Create
         public IActionResult Create()
         {
@@ -41,6 +45,7 @@ namespace AsistenciaWeb.Controllers
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("codigo_barras,carnet,nombre,apellido,IdCarrera,estado")] Estudiante estudiante)
@@ -59,7 +64,7 @@ namespace AsistenciaWeb.Controllers
             return View(estudiante);
         }
 
-
+        [Authorize]
         // GET: Estudiantes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -75,6 +80,7 @@ namespace AsistenciaWeb.Controllers
             return View(estudiante);
         }
 
+        [Authorize]
         // POST: Estudiantes/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -103,6 +109,7 @@ namespace AsistenciaWeb.Controllers
             return View(estudiante);
         }
 
+        [Authorize]
         // GET: Estudiantes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -115,6 +122,7 @@ namespace AsistenciaWeb.Controllers
             return View(estudiante);
         }
 
+        [Authorize]
         // POST: Estudiantes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

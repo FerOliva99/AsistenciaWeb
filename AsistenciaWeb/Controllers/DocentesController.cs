@@ -15,6 +15,7 @@ namespace AsistenciaWeb.Controllers
             _context = context;
         }
 
+        [Authorize]
         // GET: Docentes
         public async Task<IActionResult> Index()
         {
@@ -22,6 +23,7 @@ namespace AsistenciaWeb.Controllers
             return View(docentes);
         }
 
+        [Authorize]
         // GET: Docentes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -37,12 +39,14 @@ namespace AsistenciaWeb.Controllers
             return View(docente);
         }
 
+        [Authorize]
         // GET: Docentes/Create
         public IActionResult Create()
         {
             return View();
         }
 
+        [Authorize]
         // POST: Docentes/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -62,6 +66,7 @@ namespace AsistenciaWeb.Controllers
             return View(docente);
         }
 
+        [Authorize]
         // GET: Docentes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -75,6 +80,7 @@ namespace AsistenciaWeb.Controllers
             return View(docente);
         }
 
+        [Authorize]
         // POST: Docentes/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -120,6 +126,7 @@ namespace AsistenciaWeb.Controllers
             return View(docente);
         }
 
+        [Authorize]
         // GET: Docentes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -135,6 +142,7 @@ namespace AsistenciaWeb.Controllers
             return View(docente);
         }
 
+        [Authorize]
         // POST: Docentes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
