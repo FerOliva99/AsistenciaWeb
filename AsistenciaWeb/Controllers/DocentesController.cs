@@ -169,6 +169,7 @@ namespace AsistenciaWeb.Controllers
             int docenteId = int.Parse(docenteIdClaim);
 
             var grupos = await _context.Grupos
+                .Include(m => m.id_materiaNavigation)
                 .Where(g => g.id_docente == docenteId)
                 .ToListAsync();
 

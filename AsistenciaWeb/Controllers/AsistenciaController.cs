@@ -11,7 +11,6 @@ public class AsistenciaController : Controller
         _context = context;
     }
 
-
     // GET: Asistencia/Registrar/5
     public IActionResult Registrar(int id)
     {
@@ -27,5 +26,65 @@ public class AsistenciaController : Controller
         }
 
         return View(grupo); // enviar el grupo a la vista
+    }
+
+    [HttpGet]
+    public IActionResult BuscarEstudiante(string carnet, int idGrupo)
+    {
+        var estudiante = _context.Estudiante_Grupos
+            .Include(eg => eg.id_estudianteNavigation)
+            .Where(eg => eg.id_grupo == idGrupo && eg.id_estudianteNavigation.carnet == carnet)
+            .Select(eg => eg.id_estudianteNavigation)
+            .FirstOrDefault();
+
+        if (estudiante == null)
+        {
+            return Json(new { ok = false, mensaje = "El estudiante no pertenece a este grupo o el carnet no existe." });
+        }
+
+        return Json(new
+        {
+            ok = true,
+            estudiante = new
+            {
+                id = estudiante.id_estudiante,
+                carnet = estudiante.carnet,
+                nombre = estudiante.nombre,
+                apellido = estudiante.apellido
+            }
+        });
+    }
+
+    [HttpPost]
+    public IActionResult RegistrarAsistenciaIndividual(int idEstudiante, int idGrupo)
+    {
+        Console.WriteLine("ID de estudiante [" + idEstudiante + "]");
+        Console.WriteLine("ID de grupo [" + idGrupo + "]");
+        var fecha = DateOnly.FromDateTime(DateTime.Now);
+        var hora = TimeOnly.FromDateTime(DateTime.Now);
+
+        // Validar que pertenece al grupo
+        var pertenece = _context.Estudiante_Grupos
+            .Any(eg => eg.id_estudiante == idEstudiante && eg.id_grupo == idGrupo);
+
+        if (!pertenece)
+        {
+            return Json(new { ok = false, mensaje = "Este estudiante no pertenece al grupo." });
+        }
+
+        // Registrar asistencia
+        var asistencia = new Asistencium
+        {
+            id_estudiante = idEstudiante,
+            id_grupo = idGrupo,
+            fecha = fecha,
+            hora = hora,
+            estado = "PRESENTE"
+        };
+
+        _context.Asistencia.Add(asistencia);
+        _context.SaveChanges();
+
+        return Json(new { ok = true, mensaje = "Asistencia registrada correctamente" });
     }
 }

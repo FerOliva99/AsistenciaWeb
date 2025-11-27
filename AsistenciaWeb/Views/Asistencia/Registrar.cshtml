@@ -11,3 +11,144 @@
     <li class="list-group-item"><strong>Horario:</strong> @Model.horario</li>
     <li class="list-group-item"><strong>Aula:</strong> @Model.aula</li>
 </ul>
+
+<h3>Buscar Estudiante por Carnet</h3>
+
+<div class="input-group mb-3">
+    <input type="text" id="carnetInput" class="form-control" placeholder="Ingrese carnet del estudiante" />
+    <button class="btn btn-primary" type="button" onclick="buscarEstudiante()">Buscar</button>
+</div>
+
+<div id="resultadoEstudiante" class="alert d-none"></div>
+
+<div id="infoEstudiante" class="card d-none mt-4">
+    <div class="card-body">
+        <h5 class="card-title" id="estNombre"></h5>
+        <p class="card-text" id="estCarnet"></p>
+
+        <button class="btn btn-success" onclick="registrarAsistencia()">Registrar Asistencia</button>
+    </div>
+</div>
+
+<input type="hidden" id="idGrupo" value="@Model.id_grupo" />
+<input type="hidden" id="idEstudiante" />
+
+<script>
+    function buscarEstudiante() {
+        var carnet = document.getElementById("carnetInput").value;
+        var idGrupo = document.getElementById("idGrupo").value;
+
+        fetch(`/Asistencia/BuscarEstudiante?carnet=${carnet}&idGrupo=${idGrupo}`)
+            .then(r => r.json())
+            .then(data => {
+                var msg = document.getElementById("resultadoEstudiante");
+
+                if (!data.ok) {
+                    msg.className = "alert alert-danger";
+                    msg.innerText = data.mensaje;
+                    msg.classList.remove("d-none");
+                    document.getElementById("infoEstudiante").classList.add("d-none");
+                    return;
+                }
+
+                msg.className = "alert alert-success";
+                msg.innerText = "Estudiante encontrado";
+                msg.classList.remove("d-none");
+
+                document.getElementById("idEstudiante").value = data.estudiante.id;
+                document.getElementById("estNombre").innerText =
+                    data.estudiante.nombre + " " + data.estudiante.apellido;
+                document.getElementById("estCarnet").innerText =
+                    "Carnet: " + data.estudiante.carnet;
+
+                document.getElementById("infoEstudiante").classList.remove("d-none");
+            });
+    }
+
+    async function registrarAsistencia() {
+        /*
+        var idEstudiante = document.getElementById("idEstudiante").value;
+        var idGrupo = document.getElementById("idGrupo").value;
+        */
+
+        /*
+        fetch("/Asistencia/RegistrarAsistenciaIndividual", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ idEstudiante, idGrupo })
+        })
+            .then(r => r.json())
+            .then(data => {
+                alert(data.mensaje);
+            });
+        */
+
+       /*
+       fetch(`/Asistencia/RegistrarAsistenciaIndividual?idEstudiante=${idEstudiante}&idGrupo=${idGrupo}`, { method: "POST" })
+        .then(r => r.json())
+        .then(data => {
+            alert(data.mensaje);
+        });
+
+        if (data.ok) {
+                // Limpiar el input de carnet
+                var carnetInput = document.getElementById("carnetInput");
+                carnetInput.value = "";
+
+                // Limpiar idEstudiante
+                document.getElementById("idEstudiante").value = "";
+
+                // Ocultar la tarjeta de info del estudiante
+                var infoEst = document.getElementById("infoEstudiante");
+                infoEst.classList.add("d-none");
+
+                // Limpiar y ocultar mensaje anterior
+                var msg = document.getElementById("resultadoEstudiante");
+                msg.textContent = "";
+                msg.classList.add("d-none");
+
+                // Colocar foco nuevamente en el input de carnet
+                carnetInput.focus();
+        }*/
+
+        try {
+            var idEstudiante = document.getElementById("idEstudiante").value;
+            var idGrupo = document.getElementById("idGrupo").value;
+
+            if (!idEstudiante) {
+                alert("No hay estudiante seleccionado.");
+                return;
+            }
+
+            // Llamada al endpoint
+            let response = await fetch(`/Asistencia/RegistrarAsistenciaIndividual?idEstudiante=${idEstudiante}&idGrupo=${idGrupo}`, { method: "POST" });
+            let data = await response.json();
+
+            // Mostrar mensaje
+            alert(data.mensaje);
+
+            if (data.ok) {
+                // Limpiar input de carnet
+                let carnetInput = document.getElementById("carnetInput");
+                carnetInput.value = "";
+
+                // Limpiar idEstudiante oculto
+                document.getElementById("idEstudiante").value = "";
+
+                // Ocultar tarjeta del estudiante
+                let infoEst = document.getElementById("infoEstudiante");
+                infoEst.classList.add("d-none");
+
+                // Ocultar mensaje previo
+                let msg = document.getElementById("resultadoEstudiante");
+                msg.textContent = "";
+                msg.classList.add("d-none");
+
+                // Enfocar de nuevo en el input
+                carnetInput.focus();
+            }
+        } catch (err) {
+            console.error("Error al registrar asistencia:", err);
+        }
+    }
+</script>
