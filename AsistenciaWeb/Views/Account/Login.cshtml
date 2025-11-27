@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+
+<h2>Login</h2>
+
+<form asp-action="Login" method="post">
+    <div>
+        <label>Correo:</label>
+        <input type="text" name="correo" required />
+    </div>
+    <div>
+        <label>Contraseña:</label>
+        <input type="password" name="contrasena" required />
+    </div>
+    <button type="submit">Ingresar</button>
+</form>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <p style="color:red">@ViewData.ModelState.Values.SelectMany(v => v.Errors).FirstOrDefault()?.ErrorMessage</p>
+}

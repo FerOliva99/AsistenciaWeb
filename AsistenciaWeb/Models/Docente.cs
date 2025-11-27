@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
 
 namespace AsistenciaWeb.Models;
 
@@ -24,10 +25,23 @@ public partial class Docente
     [Unicode(false)]
     public string? correo { get; set; }
 
-    [StringLength(25)]
+    [StringLength(256)]
     [Unicode(false)]
     public string? contrasena { get; set; }
 
     [InverseProperty("id_docenteNavigation")]
     public virtual ICollection<Grupo> Grupos { get; set; } = new List<Grupo>();
+
+    public void SetPassword(string password)
+    {
+        var hasher = new PasswordHasher<Docente>();
+        this.contrasena = hasher.HashPassword(this, password);
+    }
+
+    public bool CheckPassword(string password)
+    {
+        var hasher = new PasswordHasher<Docente>();
+        var result = hasher.VerifyHashedPassword(this, this.contrasena, password);
+        return result == PasswordVerificationResult.Success;
+    }
 }

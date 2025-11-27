@@ -20,6 +20,10 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+
+                        <!-- SECCIÓN DE USUARIO (solo visible si está autenticado) -->
+                        @if (User.Identity.IsAuthenticated)
+                        {
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Estudiantes" asp-action="Index">Estudiantes</a>
                         </li>
@@ -38,7 +42,21 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="EstudianteGrupo" asp-action="Index">Estudiantes por Grupos</a>
                         </li>
+                        }
+
                     </ul>
+
+                    <!-- SECCIÓN DE USUARIO (solo visible si está autenticado) -->
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div class="d-flex align-items-center">
+                            <span class="me-2">Hola, @User.Identity.Name!</span>
+                            <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                                <button type="submit" class="btn btn-danger btn-sm">Cerrar Sesión</button>
+                            </form>
+                        </div>
+                    }
+
                 </div>
             </div>
         </nav>

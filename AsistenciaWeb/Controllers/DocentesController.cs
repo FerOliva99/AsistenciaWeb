@@ -1,4 +1,5 @@
 ﻿using AsistenciaWeb.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -45,10 +46,15 @@ namespace AsistenciaWeb.Controllers
         // POST: Docentes/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Docente docente)
+        public async Task<IActionResult> Create(Docente docente, string contrasena)
         {
             if (ModelState.IsValid)
             {
+                if (!string.IsNullOrEmpty(contrasena))
+                {
+                    docente.SetPassword(contrasena); // Hash de la contraseña
+                }
+
                 _context.Add(docente);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -72,7 +78,7 @@ namespace AsistenciaWeb.Controllers
         // POST: Docentes/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Docente docente)
+        public async Task<IActionResult> Edit(int id, Docente docente, string? nuevaContrasena)
         {
             if (id != docente.id_docente)
                 return NotFound();
@@ -81,7 +87,25 @@ namespace AsistenciaWeb.Controllers
             {
                 try
                 {
+                    /*
                     _context.Update(docente);
+                    await _context.SaveChangesAsync();
+                    */
+
+                    var docenteDb = await _context.Docentes.FindAsync(id);
+                    if (docenteDb == null) return NotFound();
+
+                    // Actualizar solo los campos visibles
+                    docenteDb.nombre = docente.nombre;
+                    docenteDb.apellido = docente.apellido;
+                    docenteDb.correo = docente.correo;
+
+                    // Solo actualizar contraseña si se envía nueva
+                    if (!string.IsNullOrEmpty(nuevaContrasena))
+                    {
+                        docenteDb.SetPassword(nuevaContrasena);
+                    }
+
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -125,6 +149,22 @@ namespace AsistenciaWeb.Controllers
             }
 
             return RedirectToAction(nameof(Index));
+        }
+
+        [Authorize]
+        public async Task<IActionResult> MisGrupos()
+        {
+            var docenteIdClaim = User.Claims.FirstOrDefault(c => c.Type == "DocenteId")?.Value;
+            if (docenteIdClaim == null)
+                return RedirectToAction("Login", "Account");
+
+            int docenteId = int.Parse(docenteIdClaim);
+
+            var grupos = await _context.Grupos
+                .Where(g => g.id_docente == docenteId)
+                .ToListAsync();
+
+            return View(grupos);
         }
     }
 }

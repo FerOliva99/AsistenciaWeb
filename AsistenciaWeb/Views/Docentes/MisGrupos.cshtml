@@ -1,0 +1,20 @@
+﻿@model IEnumerable<AsistenciaWeb.Models.Grupo>
+
+<h2>Mis Grupos</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var grupo in Model)
+        {
+            <tr>
+                <td>@grupo.id_grupo</td>
+            </tr>
+        }
+    </tbody>
+</table>
