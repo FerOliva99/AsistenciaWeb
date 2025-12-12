@@ -29,7 +29,7 @@ public class AccountController : Controller
             return View();
         }
 
-        // Crear claims
+        // Crear claims para almacenar datos del usuario loggeado y que se envian en la cookie
         var claims = new List<Claim>
         {
             new Claim(ClaimTypes.Name, docente.nombre + " " + docente.apellido),
@@ -42,6 +42,7 @@ public class AccountController : Controller
         return RedirectToAction("MisGrupos", "Docentes");
     }
 
+    // Borra la sesión
     public async Task<IActionResult> Logout()
     {
         await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);

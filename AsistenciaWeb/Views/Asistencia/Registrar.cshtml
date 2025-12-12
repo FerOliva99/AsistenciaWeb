@@ -66,50 +66,6 @@
     }
 
     async function registrarAsistencia() {
-        /*
-        var idEstudiante = document.getElementById("idEstudiante").value;
-        var idGrupo = document.getElementById("idGrupo").value;
-        */
-
-        /*
-        fetch("/Asistencia/RegistrarAsistenciaIndividual", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ idEstudiante, idGrupo })
-        })
-            .then(r => r.json())
-            .then(data => {
-                alert(data.mensaje);
-            });
-        */
-
-       /*
-       fetch(`/Asistencia/RegistrarAsistenciaIndividual?idEstudiante=${idEstudiante}&idGrupo=${idGrupo}`, { method: "POST" })
-        .then(r => r.json())
-        .then(data => {
-            alert(data.mensaje);
-        });
-
-        if (data.ok) {
-                // Limpiar el input de carnet
-                var carnetInput = document.getElementById("carnetInput");
-                carnetInput.value = "";
-
-                // Limpiar idEstudiante
-                document.getElementById("idEstudiante").value = "";
-
-                // Ocultar la tarjeta de info del estudiante
-                var infoEst = document.getElementById("infoEstudiante");
-                infoEst.classList.add("d-none");
-
-                // Limpiar y ocultar mensaje anterior
-                var msg = document.getElementById("resultadoEstudiante");
-                msg.textContent = "";
-                msg.classList.add("d-none");
-
-                // Colocar foco nuevamente en el input de carnet
-                carnetInput.focus();
-        }*/
 
         try {
             var idEstudiante = document.getElementById("idEstudiante").value;

@@ -22,6 +22,8 @@
                 <td>@grupo.aula</td>
                 <td>
                     <a class="btn btn-info btn-sm align-items-center" asp-controller="Asistencia" asp-action="Registrar" asp-route-id="@grupo.id_grupo">Habilitar Asistencia</a>
+                    
+                    <a class="btn btn-secondary btn-sm" asp-controller="Asistencia" asp-action="Detalle" asp-route-id="@grupo.id_grupo">Ver Detalle</a>
                 </td>
             </tr>
         }

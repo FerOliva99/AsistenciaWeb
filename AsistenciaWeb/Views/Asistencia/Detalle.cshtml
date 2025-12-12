@@ -1,0 +1,59 @@
+﻿@model AsistenciaWeb.ViewModels.DetalleAsistenciaVM
+
+<h2 class="mb-4">Detalle del Grupo @Model.Grupo.id_grupo</h2>
+
+<div class="card p-3 mb-4">
+    <strong>Materia:</strong> @Model.Grupo.id_materiaNavigation?.nombre <br />
+    <strong>Docente:</strong> @Model.Grupo.id_docenteNavigation?.nombre <br />
+    <strong>Horario:</strong> @Model.Grupo.horario <br />
+    <strong>Aula:</strong> @Model.Grupo.aula
+</div>
+
+<h4>Consultar Asistencias</h4>
+
+<form method="get" asp-action="Detalle" asp-route-id="@Model.Grupo.id_grupo">
+    <div class="mb-3">
+        <label class="form-label">Fecha</label>
+        <input type="date" name="fecha" value="@(Model.Fecha?.ToString("yyyy-MM-dd"))" class="form-control" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Consultar</button>
+</form>
+
+<hr />
+
+@if (Model.Asistencias != null)
+{
+    <h4 class="mt-4">Resultados para @Model.Fecha</h4>
+
+    @if (!Model.Asistencias.Any())
+    {
+        <div class="alert alert-warning mt-3">
+            No hay registros de asistencia en esta fecha.
+        </div>
+    }
+    else
+    {
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>Estudiante</th>
+                    <th>Carnet</th>
+                    <th>Hora</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var a in Model.Asistencias)
+                {
+                    <tr>
+                        <td>@a.id_estudianteNavigation.nombre @a.id_estudianteNavigation.apellido</td>
+                        <td>@a.id_estudianteNavigation.carnet</td>
+                        <td>@a.hora</td>
+                        <td>@a.estado</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}

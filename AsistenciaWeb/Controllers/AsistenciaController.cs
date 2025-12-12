@@ -1,4 +1,6 @@
 ﻿using AsistenciaWeb.Models;
+using AsistenciaWeb.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +14,7 @@ public class AsistenciaController : Controller
     }
 
     // GET: Asistencia/Registrar/5
+    [Authorize]
     public IActionResult Registrar(int id)
     {
         // Aquí puedes obtener el grupo y/o estudiantes para enviar a la vista
@@ -28,6 +31,7 @@ public class AsistenciaController : Controller
         return View(grupo); // enviar el grupo a la vista
     }
 
+    [Authorize]
     [HttpGet]
     public IActionResult BuscarEstudiante(string carnet, int idGrupo)
     {
@@ -55,6 +59,7 @@ public class AsistenciaController : Controller
         });
     }
 
+    [Authorize]
     [HttpPost]
     public IActionResult RegistrarAsistenciaIndividual(int idEstudiante, int idGrupo)
     {
@@ -86,5 +91,35 @@ public class AsistenciaController : Controller
         _context.SaveChanges();
 
         return Json(new { ok = true, mensaje = "Asistencia registrada correctamente" });
+    }
+
+    [Authorize]
+    public IActionResult Detalle(int id, DateOnly? fecha)
+    {
+        var grupo = _context.Grupos
+            .Include(g => g.id_materiaNavigation)
+            .Include(g => g.id_docenteNavigation)
+            .FirstOrDefault(g => g.id_grupo == id);
+
+        if (grupo == null)
+        {
+            return NotFound();
+        }
+
+        var vm = new DetalleAsistenciaVM
+        {
+            Grupo = grupo,
+            Fecha = fecha
+        };
+
+        if (fecha != null)
+        {
+            vm.Asistencias = _context.Asistencia
+                .Include(a => a.id_estudianteNavigation)
+                .Where(a => a.id_grupo == id && a.fecha == fecha)
+                .ToList();
+        }
+
+        return View(vm);
     }
 }
